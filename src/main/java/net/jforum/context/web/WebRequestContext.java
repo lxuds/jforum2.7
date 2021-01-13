@@ -149,6 +149,9 @@ public class WebRequestContext extends HttpServletRequestWrapper implements Requ
 			if (isPost) { 
 				containerEncoding = encoding;
 			}
+			
+
+
 			for (final Enumeration<String> enumeration = superRequest.getParameterNames(); enumeration.hasMoreElements(); ) {
 				final String name = (String)enumeration.nextElement();
 				

@@ -43,6 +43,7 @@
  */
 package net.jforum.search;
 
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -69,8 +70,10 @@ import org.apache.lucene.search.TotalHits;
 
 import net.jforum.entities.Post;
 import net.jforum.exceptions.SearchException;
+import net.jforum.util.DumpStack;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
+import net.jforum.util.DumpStack;
 
 /**
  * @author Rafael Steil
@@ -149,21 +152,45 @@ public class LuceneSearch implements NewDocumentAdded
 
 			LOGGER.debug("criteria=["+criteria.toString()+"]");
 
+			
+			
+			// LX 
+			DumpStack.dumpText("LuceneSearch.performSearch Criteria " + criteria.toString());
+			DumpStack.dumpText("LuceneSearch.performSearch userId = " + userId);
+			
+			//DumpStack.dumpStack();
+			
+			
 			if (criteria.length() == 0) {
 				result =  new SearchResult<Post>(new ArrayList<Post>());
 			} else {
+				
+					
 				Query query = new QueryParser(SearchFields.Indexed.CONTENTS, this.settings.analyzer()).parse(criteria.toString());
 
+				// LX
+				DumpStack.dumpText("LuceneSearch.performSearch" + query.toString());
+				
 				final int limit = SystemGlobals.getIntValue(ConfigKeys.SEARCH_RESULT_LIMIT);
+				
+				// LX
+				DumpStack.dumpText("LuceneSearch.performSearch Search_result_limit = " + limit);
+				
 				TopFieldDocs tfd = searcher.search(query, limit, getSorter(args));
 				ScoreDoc[] docs = tfd.scoreDocs;
 				TotalHits th = tfd.totalHits;
+				
+				// LX
+				DumpStack.dumpText("LuceneSearch.performSearch totalHits = " + th.value);		
+				
 				if (th.value > 0) {
 					result = new SearchResult<Post>(resultCollector.collect(args, docs, query));
 				} else {
 					result = new SearchResult<Post>(new ArrayList<Post>());
 				}
 
+		
+				
 				LOGGER.debug((th.relation == TotalHits.Relation.EQUAL_TO ? "" : "minimum ") + "number of hits="+th.value);
 			}
 		} catch (Exception e) {

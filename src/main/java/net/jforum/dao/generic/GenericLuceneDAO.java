@@ -61,6 +61,7 @@ import net.jforum.exceptions.DatabaseException;
 import net.jforum.search.SearchPost;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
+//import net.jforum.util.DumpStack;
 
 /**
  * @author Rafael Steil
@@ -159,16 +160,22 @@ public class GenericLuceneDAO implements LuceneDAO
 		ResultSet rs = null;
 		
 		try {
-			String sql = SystemGlobals.getSql("SearchModel.getPostsDataForLucene");
+			String sql = SystemGlobals.getSql("SearchModel.getPostsAndRoseDataForLucene");
 			sql = sql.replaceAll(":posts:", this.buildInClause(postIds));
 			
 			pstmt = JForumExecutionContext.getConnection().prepareStatement(sql);
 			rs = pstmt.executeQuery();
+
+			// LX add dumpStack to trace functions that work on query "SearchModel.getPostsDataForLucene"
+			//DumpStack.dumpStack();
 			
 			while (rs.next()) {
 				Post post = this.makePost(rs);
 				post.setPostUsername(rs.getString("username"));
 				
+				l.add(post);
+				l.add(post);
+				l.add(post);
 				l.add(post);
 			}
 		}

@@ -56,6 +56,8 @@ import net.jforum.entities.Post;
 import net.jforum.exceptions.ForumException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
+import net.jforum.util.DumpStack;
+
 
 /**
  * @author Rafael Steil
@@ -137,7 +139,11 @@ public class LuceneManager
 
 	public SearchResult<Post> search(final SearchArgs args, int userId)
 	{
+		//LX
+		DumpStack.dumpText("LuceneManager Search before search");
+		
 		return search.search(args, userId);
+
 	}
 
 	public void delete(final Post post)
