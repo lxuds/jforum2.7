@@ -160,7 +160,7 @@ public class GenericLuceneDAO implements LuceneDAO
 		ResultSet rs = null;
 		
 		try {
-			String sql = SystemGlobals.getSql("SearchModel.getPostsAndRoseDataForLucene");
+			String sql = SystemGlobals.getSql("SearchModel.getPostsDataForLucene");
 			sql = sql.replaceAll(":posts:", this.buildInClause(postIds));
 			
 			pstmt = JForumExecutionContext.getConnection().prepareStatement(sql);
