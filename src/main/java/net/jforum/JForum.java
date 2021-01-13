@@ -86,6 +86,7 @@ import net.jforum.repository.RankingRepository;
 import net.jforum.repository.SecurityRepository;
 import net.jforum.repository.SmiliesRepository;
 import net.jforum.summary.SummaryScheduler;
+import net.jforum.util.DumpStack;
 import net.jforum.util.FileMonitor;
 import net.jforum.util.I18n;
 import net.jforum.util.bbcode.BBCodeHandler;
@@ -255,6 +256,9 @@ public class JForum extends JForumBaseServlet
         // Here we go, baby
         final Command command = this.retrieveCommand(moduleClass);
         final Template template = command.process(request, response, context);
+        
+        // LX
+        DumpStack.dumpText(request.getQueryString());
 
         if (JForumExecutionContext.getRedirectTo() == null) {
             String contentType = JForumExecutionContext.getContentType();

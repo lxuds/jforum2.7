@@ -42,6 +42,9 @@
  */
 package net.jforum.dao.generic;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -397,7 +400,7 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 		}
 	}
 
-	private LastPostInfo getLastPostInfo(final int forumId, boolean origTryFix)
+	private LastPostInfo getLastPostInfo(final int forumId, boolean origTryFix) 
 	{
 		boolean tryFix = origTryFix;
 		final LastPostInfo lpi = new LastPostInfo();
@@ -408,7 +411,8 @@ public class GenericForumDAO extends AutoKeys implements net.jforum.dao.ForumDAO
 			pstmt = JForumExecutionContext.getConnection()
 					.prepareStatement(SystemGlobals.getSql("ForumModel.lastPostInfo"));
 			pstmt.setInt(1, forumId);
-
+					
+			
 			resultSet = pstmt.executeQuery();
 
 			if (resultSet.next()) {

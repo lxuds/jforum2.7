@@ -63,7 +63,7 @@ import net.jforum.sso.LoginAuthenticator;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
-
+import net.jforum.util.DumpStack;
 /**
  * @author Rafael Steil
  * @version $Id$
@@ -133,6 +133,10 @@ public class GenericUserDAO extends AutoKeys implements UserDAO
 		String q = SystemGlobals.getSql("UserModel.selectById");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
+		// DumpStack.dumpStack();
+		// LX can add umpStack to trace the function called this function
+		
 		
 		try {
 			pstmt = JForumExecutionContext.getConnection().prepareStatement(q);

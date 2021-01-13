@@ -21,6 +21,7 @@ import org.owasp.csrfguard.log.LogLevel;
 import net.jforum.context.RequestContext;
 import net.jforum.context.web.WebRequestContext;
 
+
 /**
  * Didn't use OWASP filter because couldn't map jforum actions to urls consistently.
  * Copied from OWASP and added getJForumMethodName() and changed logic near isValidRequest line.
@@ -97,6 +98,8 @@ public class CsrfFilter implements Filter {
             	return;            	
             }
             String name = getJForumMethodName(httpRequest);
+            
+          
             CsrfHttpServletRequestWrapper csrfRequestWrapper = new CsrfHttpServletRequestWrapper(httpRequest, name);
             if (session.isNew() && csrfGuard.isUseNewTokenLandingPage()) {
                 csrfGuard.writeLandingPage(httpRequest, httpResponse);                
