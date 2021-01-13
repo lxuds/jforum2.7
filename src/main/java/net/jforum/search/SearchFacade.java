@@ -47,7 +47,6 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import net.jforum.entities.Post;
-import net.jforum.util.DumpStack;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 /**
@@ -84,11 +83,6 @@ public final class SearchFacade
 
 	public static SearchResult<Post> search(final SearchArgs args, final int userId)
 	{
-		//LX
-        if (isSearchEnabled()) {
-        	DumpStack.dumpText("SearchFacade Search is enabled");        	
-        }
-        
 		return isSearchEnabled()
 			? searchManager.search(args, userId)
 			: new SearchResult<Post>(new ArrayList<Post>());

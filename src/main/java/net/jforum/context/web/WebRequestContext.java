@@ -151,7 +151,6 @@ public class WebRequestContext extends HttpServletRequestWrapper implements Requ
 			}
 			
 
-
 			for (final Enumeration<String> enumeration = superRequest.getParameterNames(); enumeration.hasMoreElements(); ) {
 				final String name = (String)enumeration.nextElement();
 				
