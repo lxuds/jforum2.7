@@ -62,7 +62,6 @@ import net.jforum.search.NewMessagesSearchOperation;
 import net.jforum.search.SearchArgs;
 import net.jforum.search.SearchOperation;
 import net.jforum.search.SearchResult;
-import net.jforum.util.DumpStack;
 import net.jforum.util.I18n;
 import net.jforum.util.SafeHtml;
 import net.jforum.util.preferences.ConfigKeys;
@@ -71,8 +70,6 @@ import net.jforum.util.preferences.TemplateKeys;
 import net.jforum.util.stats.StatsEvent;
 import net.jforum.view.forum.common.TopicsCommon;
 import net.jforum.view.forum.common.ViewCommon;
-import net.jforum.util.DumpStack;
-
 
 /**
  * @author Rafael Steil
@@ -115,8 +112,6 @@ public class SearchAction extends Command
     }
 
     public void search() {
-    	//LX
-    	//DumpStack.dumpText("SearchAction search 1 ");
 		SearchArgs args = null;
 		try {
 			args = this.buildSearchArgs();
@@ -125,8 +120,6 @@ public class SearchAction extends Command
 			filters();
 			return;
 		}
-    	//LX
-    	//DumpStack.dumpText("SearchAction search 2 " + args.getKeywords());
 		new StatsEvent("Search", SafeHtml.makeSafe(args.rawKeywords())).record();
 		this.search(new ContentSearchOperation(), args);
     }
@@ -138,16 +131,7 @@ public class SearchAction extends Command
 
 		//operation.performSearch(args);
 		UserSession userSession = SessionFacade.getUserSession();
-		
-		//LX
-		DumpStack.dumpText("before searchAction performSearch");
-		
-		// LX
-		DumpStack.dumpText("searchAction performSearch getUserID = " + userSession.getUserId());
 		SearchResult<?> searchResults = operation.performSearch(args, userSession.getUserId());
-
-		// LX
-		DumpStack.dumpText("after searchAction performSearch");
 		
 		operation.prepareForDisplay();
 		List<?> results = operation.filterResults(operation.getResults());

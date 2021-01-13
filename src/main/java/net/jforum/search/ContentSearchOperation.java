@@ -48,10 +48,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.jforum.entities.Post;
-import net.jforum.util.DumpStack;
 import net.jforum.util.preferences.TemplateKeys;
 import net.jforum.view.forum.common.PostCommon;
-import net.jforum.util.DumpStack;
 
 /**
  * @author Rafael Steil
@@ -62,11 +60,6 @@ public class ContentSearchOperation extends SearchOperation
 	
 	@Override public SearchResult<Post> performSearch(final SearchArgs args, final int userId)
 	{
-		
-		
-		//LX
-		DumpStack.dumpText("ContentSearchOperation args.length = " + args.getKeywords().length);
-		DumpStack.dumpText("ContentSearchOperation getUserID.length = " +args.getUserIds().length);
 		
         final SearchResult<Post> searchResult =
 				(args.getKeywords().length > 0 || args.getUserIds().length > 0)

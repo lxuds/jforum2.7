@@ -63,8 +63,6 @@ import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.entities.Post;
 import net.jforum.exceptions.ForumException;
-import net.jforum.util.DumpStack;
-
 
 /**
  * @author Rafael Steil
@@ -80,8 +78,6 @@ public class LuceneContentCollector
 
 	public List<Post> collect (SearchArgs args, ScoreDoc[] results, Query query) {
 		try {
-			// LX 
-			DumpStack.dumpText("LuceneContentCollector result.length" + results.length);
 			
 			int[] postIds = new int[Math.min(args.fetchCount(), results.length)];
 

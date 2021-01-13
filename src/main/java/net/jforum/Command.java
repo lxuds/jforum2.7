@@ -58,8 +58,6 @@ import net.jforum.repository.Tpl;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.util.DumpStack;
-
 
 /**
  * <code>Command</code> Pattern implementation.
@@ -92,8 +90,6 @@ public abstract class Command
 	
 	protected void enableIgnoreAction()
 	{
-		//LX
-		DumpStack.dumpStack();
 		this.ignoreAction = true;
 	}
 	
@@ -121,17 +117,9 @@ public abstract class Command
 		
 		final String action = this.request.getAction();
 		
-		//LX
-		//DumpStack.dumpStack();
-        DumpStack.dumpText("Command process ignoreaction = " + this.ignoreAction);
 		if (!this.ignoreAction) {
 			try {
-				//LX
-				DumpStack.dumpText("Before search");
 				this.getClass().getMethod(action, NO_ARGS_CLASS).invoke(this, NO_ARGS_OBJECT);
-				// LX
-				DumpStack.dumpText("After search");
-
 			}
 			catch (NoSuchMethodException e) {		
 				this.list();		
