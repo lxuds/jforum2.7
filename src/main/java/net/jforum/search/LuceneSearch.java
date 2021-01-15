@@ -68,6 +68,7 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.TopFieldDocs;
 import org.apache.lucene.search.TotalHits;
 
+import net.jforum.dao.generic.GenericLuceneDAO;
 import net.jforum.entities.Post;
 import net.jforum.exceptions.SearchException;
 import net.jforum.util.preferences.ConfigKeys;
@@ -170,6 +171,9 @@ public class LuceneSearch implements NewDocumentAdded
 				
 				LOGGER.debug((th.relation == TotalHits.Relation.EQUAL_TO ? "" : "minimum ") + "number of hits="+th.value);
 			}
+			
+			// LX -- call getRoseData(), add the returned Post list to "result"
+			result.appendResults(GenericLuceneDAO.getRoseData("Peace"));
 		} catch (Exception e) {
 			throw new SearchException(e);
 		} finally {

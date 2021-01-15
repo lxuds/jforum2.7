@@ -66,4 +66,8 @@ public class SearchResult<T>
 	{
 		return records.size();
 	}
+	
+	public void appendResults(List<T> newRecords) {
+		records.addAll(newRecords);
+	}
 }
