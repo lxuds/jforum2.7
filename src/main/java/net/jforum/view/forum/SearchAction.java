@@ -148,6 +148,8 @@ public class SearchAction extends Command
 		//ViewCommon.contextToPagination(start, results.size(), recordsPerPage);
 		ViewCommon.contextToPagination(start, searchResults.getNumberOfHits(), recordsPerPage);
 		TopicsCommon.topicListingBase();
+		
+		// LX log response
 	}
 
 	private SearchArgs buildSearchArgs() {

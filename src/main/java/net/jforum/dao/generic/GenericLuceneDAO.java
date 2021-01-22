@@ -199,6 +199,8 @@ public class GenericLuceneDAO implements LuceneDAO
 		post.setSmiliesEnabled(rs.getInt("enable_smilies") == 1);
 		post.hasAttachments(rs.getInt("attach") == 1);
 		post.setTopicType(rs.getInt("topic_type"));
+		// LX
+	    post.setType(2);
 		Timestamp ts = rs.getTimestamp("post_edit_time");
 		if (ts != null) {
 			post.setEditTime(new Date(ts.getTime()));
@@ -234,6 +236,7 @@ public class GenericLuceneDAO implements LuceneDAO
 			
 			while (rs.next()) {
 				Post post = makeRoseInfo(rs);
+				
 				post.setPostUsername(rs.getString("username"));
 				l.add(post);
 				
@@ -303,6 +306,8 @@ public class GenericLuceneDAO implements LuceneDAO
 		post.setSmiliesEnabled(rs.getInt("enable_smilies") == 1);
 		post.hasAttachments(rs.getInt("attach") == 1);
 		post.setTopicType(rs.getInt("topic_type"));
+		// LX
+		post.setType(1);
 		Timestamp ts = rs.getTimestamp("post_edit_time");
 		if (ts != null) {
 			post.setEditTime(new Date(ts.getTime()));

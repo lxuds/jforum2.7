@@ -75,6 +75,9 @@ public class Post implements Serializable
 	private boolean hasAttachments;
 	private boolean moderate;
 	private int topicType;
+	
+	// LX
+	private int type;
 
 	public Post() { }
 	
@@ -109,6 +112,7 @@ public class Post implements Serializable
 		this.karma = (new KarmaStatus(post.getKarma()));
 		this.moderate = post.isModerationNeeded();
 		this.hasAttachments = post.hasAttachments();
+		this.type = post.getType();
 	}
 	
 	public void setModerate(boolean status)
@@ -473,6 +477,15 @@ public class Post implements Serializable
 	public void hasAttachments(boolean hasAttachments)
 	{
 		this.hasAttachments = hasAttachments;
+	}
+	
+	// LX
+	public int getType() {
+		return this.type;
+	}
+	
+	public void setType(int type) {
+		this.type = type;
 	}
 	
 	/**

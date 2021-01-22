@@ -506,7 +506,6 @@ SearchModel.getPostsDataForLucene = SELECT p.post_id, p.forum_id, p.topic_id, p.
     AND p.user_id = u.user_Id
 
 
-
 SearchModel.getPostsRoseDataForLucene = SELECT p.post_id, p.forum_id, p.topic_id, p.user_id, \
     u.username, p.enable_bbcode, p.enable_smilies, p.post_time, p.attach, p.post_edit_time, \
     pt.post_subject, r.description, t.topic_title, t.user_id as topic_user_id, t.topic_type \
@@ -516,9 +515,6 @@ SearchModel.getPostsRoseDataForLucene = SELECT p.post_id, p.forum_id, p.topic_id
     AND p.topic_id = t.topic_id \
     AND p.user_id = u.user_Id \
     AND r.ename = ?
-
-
-
 
 
 
