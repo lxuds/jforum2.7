@@ -505,6 +505,16 @@ SearchModel.getPostsDataForLucene = SELECT p.post_id, p.forum_id, p.topic_id, p.
     AND p.topic_id = t.topic_id \
     AND p.user_id = u.user_Id
 
+
+
+
+SearchModel.getPostsRoseDataForLucene = SELECT rose_info.description, ts_rank_cd(textsearchable_index_col, query ) AS rank \
+    FROM rose_info, to_tsquery('simple', ?) AS query \
+    WHERE query @@ textsearchable_index_col \
+    ORDER BY rank DESC \
+    Limit 20
+
+
 # ##########
 # TreeGroup
 # ##########

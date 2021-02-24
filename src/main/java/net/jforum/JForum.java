@@ -43,6 +43,9 @@
 package net.jforum;
 
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
@@ -54,6 +57,7 @@ import java.util.Properties;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -92,6 +96,7 @@ import net.jforum.util.bbcode.BBCodeHandler;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 import net.jforum.util.stats.StatsEvent;
+import net.jforum.util.DumpStack;
 
 /**
  * Front Controller.
@@ -263,6 +268,7 @@ public class JForum extends JForumBaseServlet
                 contentType = "text/html; charset=" + encoding;
             }
 
+                        
             response.setContentType(contentType);
 
             // X-Frame-Options header
@@ -274,9 +280,21 @@ public class JForum extends JForumBaseServlet
             // Binary content are expected to be fully 
             // handled in the action, including outputstream manipulation
             if (!JForumExecutionContext.isCustomContent()) {
+            	// LX                
+            	/*
+                FileWriter fw = new FileWriter("/tmp/response.log", true);
+                BufferedWriter out_writer = new BufferedWriter(fw);
+                template.process(JForumExecutionContext.getTemplateContext(), out_writer);
+                //out_writer.append(JForumExecutionContext.getTemplateContext().toString());
+                out_writer.close();
+                fw.close();
+                */
+            	DumpStack.dumpText(">>> context content " + JForumExecutionContext.getTemplateContext().get("JForumContext").toString());
+            	
                 outWriter = new BufferedWriter(new OutputStreamWriter(response.getOutputStream(), encoding));
                 template.process(JForumExecutionContext.getTemplateContext(), outWriter);
                 outWriter.flush();
+                
             }
         }
 

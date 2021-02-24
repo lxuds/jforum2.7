@@ -50,6 +50,7 @@ import net.jforum.dao.DataAccessDriver;
 import net.jforum.entities.User;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
+import net.jforum.util.DumpStack;
 
 /**
  * @author Rafael Steil
@@ -259,7 +260,8 @@ public class SearchArgs
 
 	public String[] getKeywords()
 	{
-		if (this.keywords == null || this.keywords.trim().length() == 0) {
+		if (this.keywords == null || this.keywords.trim().length() == 0) {			
+			
 			return new String[] {};
 		}
 

@@ -68,10 +68,13 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.TopFieldDocs;
 import org.apache.lucene.search.TotalHits;
 
+import net.jforum.dao.generic.GenericLuceneDAO;
 import net.jforum.entities.Post;
 import net.jforum.exceptions.SearchException;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
+//import net.jforum.util.DumpStack;
+
 
 /**
  * @author Rafael Steil
@@ -156,7 +159,7 @@ public class LuceneSearch implements NewDocumentAdded
 				
 					
 				Query query = new QueryParser(SearchFields.Indexed.CONTENTS, this.settings.analyzer()).parse(criteria.toString());
-				
+								
 				final int limit = SystemGlobals.getIntValue(ConfigKeys.SEARCH_RESULT_LIMIT);
 				TopFieldDocs tfd = searcher.search(query, limit, getSorter(args));
 				ScoreDoc[] docs = tfd.scoreDocs;
@@ -170,6 +173,15 @@ public class LuceneSearch implements NewDocumentAdded
 				
 				LOGGER.debug((th.relation == TotalHits.Relation.EQUAL_TO ? "" : "minimum ") + "number of hits="+th.value);
 			}
+			
+			// LX -- First generate keywords, then call getRoseData(), add the returned Post list to "result"
+			
+			StringBuilder rosewikiKeywords = new StringBuilder(256);
+
+			this.generateRosewikiKeywords(args, rosewikiKeywords);
+
+			result.appendResults(GenericLuceneDAO.getRoseData(rosewikiKeywords.toString()));
+			
 		} catch (Exception e) {
 			throw new SearchException(e);
 		} finally {
@@ -245,6 +257,56 @@ public class LuceneSearch implements NewDocumentAdded
 		}
 	}
 
+	// LX 
+	// Function to generate search keywords to perform query for rosewiki info
+	private void generateRosewikiKeywords(SearchArgs args, StringBuilder rosewikiKeywords)
+	{
+		LOGGER.debug("searching for: " + args.rawKeywords());
+		if (args.rawKeywords().length() > 0) {
+            if (args.isMatchExact()) {
+				String escapedKeywords =  QueryParser.escape(args.rawKeywords());
+				rosewikiKeywords.append(escapedKeywords);
+				
+			} else {
+				String[] keywords = this.analyzeKeywords(args.rawKeywords());
+
+				if (keywords.length != 0) {
+
+					// for Porter stemming it's problematic to analyze (and potentially alter) the keywords twice
+					if (settings.analyzer() instanceof PorterStandardAnalyzer)
+						keywords = args.rawKeywords().split("\\s");
+
+					for (int i = 0; i < keywords.length; i++) {
+						if (keywords[i].trim().length() == 0)
+							continue;
+
+						String escapedKeywords = QueryParser.escape(keywords[i]);
+
+						if (args.isMatchAll() && i < keywords.length - 1) {
+							rosewikiKeywords.append(escapedKeywords);
+							rosewikiKeywords.append(" & ");
+						} else if (args.isMatchAll() && i == keywords.length - 1) {
+							rosewikiKeywords.append(escapedKeywords);
+						}
+						
+						if (args.isMatchAny() && i < keywords.length - 1) {
+							rosewikiKeywords.append(escapedKeywords);
+							rosewikiKeywords.append(" | ");
+						} else if (args.isMatchAny() && i == keywords.length - 1) {
+							rosewikiKeywords.append(escapedKeywords);
+						}
+																		
+					}
+
+				}
+			}
+		}
+	}
+
+	
+	
+	
+	
 	private void filterByKeywords (SearchArgs args, StringBuilder criteria)
 	{
 		LOGGER.debug("searching for: " + args.rawKeywords());

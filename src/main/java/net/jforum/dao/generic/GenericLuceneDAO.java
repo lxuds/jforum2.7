@@ -169,6 +169,7 @@ public class GenericLuceneDAO implements LuceneDAO
 			while (rs.next()) {
 				Post post = this.makePost(rs);
 				post.setPostUsername(rs.getString("username"));
+				l.add(post);
 				
 			}
 		}
@@ -180,6 +181,88 @@ public class GenericLuceneDAO implements LuceneDAO
 		}
 
 		return resortByPostId(postIds, l);
+	}
+	
+	
+	// LX after change the getRoseInfo query, change the list of columns returned in this method
+	static private Post makeRoseInfo(ResultSet rs) throws SQLException
+	{
+		Post post = new SearchPost();
+		
+		// LX
+	    post.setType(2);
+		post.setText(rs.getString("description"));
+		post.setTopicType(0);
+		post.setId(17);
+		post.setTopicId(16);
+		post.setSubject("Rose Wiki");
+		//post.setEditTime(new Date(System.currentTimeMillis()));
+		post.setForumId(3);
+		post.setUserId(4);
+		//post.setPostUsername("dog");
+
+
+/*
+		post.setId(rs.getInt("post_id"));
+		post.setForumId(rs.getInt("forum_id"));
+		post.setTopicId(rs.getInt("topic_id"));
+		post.setUserId(rs.getInt("user_id"));
+		post.setTime(new Date(rs.getTimestamp("post_time").getTime()));
+		post.setBbCodeEnabled(rs.getInt("enable_bbcode") == 1);
+		post.setSmiliesEnabled(rs.getInt("enable_smilies") == 1);
+		post.hasAttachments(rs.getInt("attach") == 1);
+		post.setTopicType(rs.getInt("topic_type"));
+		
+
+		Timestamp ts = rs.getTimestamp("post_edit_time");
+		if (ts != null) {
+			post.setEditTime(new Date(ts.getTime()));
+		}
+
+		String subject = rs.getString("post_subject");
+		if (StringUtils.isBlank(subject)) {
+			subject = rs.getString("topic_title");
+		}
+		post.setSubject(subject);
+*/
+		return post;
+	}
+	
+	
+	static public List<Post> getRoseData(String rose_keyword)
+	{
+		//if (postIds.length == 0) {
+		//	return new ArrayList<Post>();
+		//}
+		
+		List<Post> l = new ArrayList<Post>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = SystemGlobals.getSql("SearchModel.getPostsRoseDataForLucene");
+			//sql = sql.replaceAll(":posts:", this.buildInClause(postIds));
+			
+			pstmt = JForumExecutionContext.getConnection().prepareStatement(sql);
+			pstmt.setString(1, rose_keyword);
+			rs = pstmt.executeQuery();
+
+			
+			while (rs.next()) {
+				Post post = makeRoseInfo(rs);
+				l.add(post);
+				
+			}
+		}
+		catch (SQLException e) {
+			throw new DatabaseException(e);
+		}
+		finally {
+			DbUtils.close(rs, pstmt);
+		}
+
+		return l;
 	}
 
 	/**
@@ -236,6 +319,8 @@ public class GenericLuceneDAO implements LuceneDAO
 		post.setSmiliesEnabled(rs.getInt("enable_smilies") == 1);
 		post.hasAttachments(rs.getInt("attach") == 1);
 		post.setTopicType(rs.getInt("topic_type"));
+		// LX
+		post.setType(1);
 		Timestamp ts = rs.getTimestamp("post_edit_time");
 		if (ts != null) {
 			post.setEditTime(new Date(ts.getTime()));
