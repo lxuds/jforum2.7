@@ -45,6 +45,7 @@ package net.jforum.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+
 import net.jforum.view.forum.common.ViewCommon;
 
 /**
@@ -61,7 +62,7 @@ public class Post implements Serializable
 	private int userId;
 	private Date time;
 	private String text;
-	private String subject;
+	private String subject = "";
 	private String postUsername;
 	private boolean bbCodeEnabled = true;
 	private boolean htmlEnabled = true;
@@ -445,6 +446,8 @@ public class Post implements Serializable
 	 */
 	public void setSubject(String subject) {
 		this.subject = subject;
+		
+		
 	}
 
 	/**

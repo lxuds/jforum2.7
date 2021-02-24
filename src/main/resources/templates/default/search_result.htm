@@ -46,7 +46,20 @@
 				<#else>
 					<#list results as post>
 						<tr>
-						<#if post.type==1>
+
+					    <#if post.type == 2>
+					        <td class="postinfo">
+								<span class="gen">
+  								    <img class="icon_folder" src="${contextPath}/images/rosewiki.jpeg" alt=""/>
+  								    
+								</span>
+							</td>
+							<tr>
+							    <td class="row1 gen">
+							    	${post.text}
+							    </td>
+						    </tr>
+						<#elseif post.type==1>
 							<td class="postinfo">
 								<#assign postUrl = JForumContext.encodeURL("/posts/preList/${post.topicId}/${post.id}")/>
 
@@ -59,28 +72,17 @@
 									<#if post.topicType == TOPIC_WIKI && post.formattedEditTime != "">${I18n.getMessage("Search.edited")} ${post.formattedEditTime}</#if>
 								</span>
 							</td>
-					    <#elseif post.type == 2>
-					        <td class="roseinfo">
-								<#assign postUrl = JForumContext.encodeURL("/posts/preList/${post.topicId}/${post.id}")/>
-
-								<span class="gen">
-									<img class="icon_folder" src="${contextPath}/images/rosewiki.jpeg" alt=""/>
-									<strong><a href="${postUrl}">${post.subject}</a></strong>, 
-									${I18n.getMessage("Search.forum")} <a href="${JForumContext.encodeURL("/forums/show/${post.forum.id}")}">${post.forum.name?html}</a>, 
-									${post.formattedTime}, 
-									${I18n.getMessage("Search.postedBy")} <a href="${JForumContext.encodeURL("/user/profile/${post.userId}")}">${post.postUsername}</a><#if post.topicType == TOPIC_WIKI && post.formattedEditTime != "">,</#if>
-									<#if post.topicType == TOPIC_WIKI && post.formattedEditTime != "">${I18n.getMessage("Search.edited")} ${post.formattedEditTime}</#if>
-								</span>
-							</td>
-					    </#if>
-						</tr>
 						<tr>
 							<td class="row1 gen">
 								${post.text}
 								<br />
-								<div align="right"><a href="${postUrl}">${I18n.getMessage("Search.viewMessage")}</a></div>
+                                <div align="right"><a href="${postUrl}">${I18n.getMessage("Search.viewMessage")}</a></div>
 							</td>
 						</tr>
+							
+					    </#if>
+						</tr>
+
 						<tr>
 							<td colspan="2" class="spacerow"><img width="1" alt="" src="${contextPath}/templates/${templateName}/images/spacer.gif"/></td>
 						</tr>

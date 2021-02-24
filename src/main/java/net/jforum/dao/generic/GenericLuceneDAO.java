@@ -188,19 +188,32 @@ public class GenericLuceneDAO implements LuceneDAO
 	static private Post makeRoseInfo(ResultSet rs) throws SQLException
 	{
 		Post post = new SearchPost();
+		
+		// LX
+	    post.setType(2);
+		post.setText(rs.getString("description"));
+		post.setTopicType(0);
+		post.setId(17);
+		post.setTopicId(16);
+		post.setSubject("Rose Wiki");
+		//post.setEditTime(new Date(System.currentTimeMillis()));
+		post.setForumId(3);
+		post.setUserId(4);
+		//post.setPostUsername("dog");
 
+
+/*
 		post.setId(rs.getInt("post_id"));
 		post.setForumId(rs.getInt("forum_id"));
 		post.setTopicId(rs.getInt("topic_id"));
 		post.setUserId(rs.getInt("user_id"));
 		post.setTime(new Date(rs.getTimestamp("post_time").getTime()));
-		post.setText(rs.getString("description"));
 		post.setBbCodeEnabled(rs.getInt("enable_bbcode") == 1);
 		post.setSmiliesEnabled(rs.getInt("enable_smilies") == 1);
 		post.hasAttachments(rs.getInt("attach") == 1);
 		post.setTopicType(rs.getInt("topic_type"));
-		// LX
-	    post.setType(2);
+		
+
 		Timestamp ts = rs.getTimestamp("post_edit_time");
 		if (ts != null) {
 			post.setEditTime(new Date(ts.getTime()));
@@ -211,9 +224,11 @@ public class GenericLuceneDAO implements LuceneDAO
 			subject = rs.getString("topic_title");
 		}
 		post.setSubject(subject);
-
+*/
 		return post;
 	}
+	
+	
 	static public List<Post> getRoseData(String rose_keyword)
 	{
 		//if (postIds.length == 0) {
@@ -236,8 +251,6 @@ public class GenericLuceneDAO implements LuceneDAO
 			
 			while (rs.next()) {
 				Post post = makeRoseInfo(rs);
-				
-				post.setPostUsername(rs.getString("username"));
 				l.add(post);
 				
 			}

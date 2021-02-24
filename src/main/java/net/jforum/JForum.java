@@ -267,14 +267,7 @@ public class JForum extends JForumBaseServlet
             if (contentType == null) {
                 contentType = "text/html; charset=" + encoding;
             }
-            
-            // LX
-            //DumpStack.dumpText("processCommand encoding:");
-            
-            // LX
-            DumpStack.dumpText("processCommand context: " + context.toString());
 
-            DumpStack.dumpText("processCommand response: " + response.toString());
                         
             response.setContentType(contentType);
 
@@ -288,13 +281,15 @@ public class JForum extends JForumBaseServlet
             // handled in the action, including outputstream manipulation
             if (!JForumExecutionContext.isCustomContent()) {
             	// LX                
+            	/*
                 FileWriter fw = new FileWriter("/tmp/response.log", true);
                 BufferedWriter out_writer = new BufferedWriter(fw);
                 template.process(JForumExecutionContext.getTemplateContext(), out_writer);
                 //out_writer.append(JForumExecutionContext.getTemplateContext().toString());
                 out_writer.close();
                 fw.close();
-
+                */
+            	DumpStack.dumpText(">>> context content " + JForumExecutionContext.getTemplateContext().get("JForumContext").toString());
             	
                 outWriter = new BufferedWriter(new OutputStreamWriter(response.getOutputStream(), encoding));
                 template.process(JForumExecutionContext.getTemplateContext(), outWriter);
