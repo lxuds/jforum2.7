@@ -71,6 +71,7 @@ import org.apache.lucene.search.TotalHits;
 import net.jforum.dao.generic.GenericLuceneDAO;
 import net.jforum.entities.Post;
 import net.jforum.exceptions.SearchException;
+import net.jforum.util.DumpStack;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 //import net.jforum.util.DumpStack;
@@ -142,45 +143,57 @@ public class LuceneSearch implements NewDocumentAdded
 	{
 		SearchResult<Post> result;
 
+		
 		try {
 			read.lock();
-			StringBuilder criteria = new StringBuilder(256);
-
-			this.filterByForum(args, criteria);
-			this.filterByUser(args, criteria, userId);
-			this.filterByKeywords(args, criteria);
-			this.filterByDateRange(args, criteria);
-
-			LOGGER.debug("criteria=["+criteria.toString()+"]");
-			
-			if (criteria.length() == 0) {
-				result =  new SearchResult<Post>(new ArrayList<Post>());
-			} else {
+			if (!args.shouldLimitSearchToWiki()) {
+				StringBuilder criteria = new StringBuilder(256);
+	
+				this.filterByForum(args, criteria);
+				this.filterByUser(args, criteria, userId);
+				this.filterByKeywords(args, criteria);
+				this.filterByDateRange(args, criteria);
+	
+				LOGGER.debug("criteria=["+criteria.toString()+"]");
 				
-					
-				Query query = new QueryParser(SearchFields.Indexed.CONTENTS, this.settings.analyzer()).parse(criteria.toString());
-								
-				final int limit = SystemGlobals.getIntValue(ConfigKeys.SEARCH_RESULT_LIMIT);
-				TopFieldDocs tfd = searcher.search(query, limit, getSorter(args));
-				ScoreDoc[] docs = tfd.scoreDocs;
-				TotalHits th = tfd.totalHits;
-
-				if (th.value > 0) {
-					result = new SearchResult<Post>(resultCollector.collect(args, docs, query));
+				if (criteria.length() == 0) {
+					result =  new SearchResult<Post>(new ArrayList<Post>());
 				} else {
-					result = new SearchResult<Post>(new ArrayList<Post>());
+					
+						
+					Query query = new QueryParser(SearchFields.Indexed.CONTENTS, this.settings.analyzer()).parse(criteria.toString());
+									
+					final int limit = SystemGlobals.getIntValue(ConfigKeys.SEARCH_RESULT_LIMIT);
+					TopFieldDocs tfd = searcher.search(query, limit, getSorter(args));
+					ScoreDoc[] docs = tfd.scoreDocs;
+					TotalHits th = tfd.totalHits;
+	
+					if (th.value > 0) {
+						result = new SearchResult<Post>(resultCollector.collect(args, docs, query));
+					} else {
+						result = new SearchResult<Post>(new ArrayList<Post>());
+					}	
+					
+					LOGGER.debug((th.relation == TotalHits.Relation.EQUAL_TO ? "" : "minimum ") + "number of hits="+th.value);
 				}	
+				// LX -- First generate keywords, then call getRoseData(), add the returned Post list to "result"
+				// LX
 				
-				LOGGER.debug((th.relation == TotalHits.Relation.EQUAL_TO ? "" : "minimum ") + "number of hits="+th.value);
+				//DumpStack.dumpText(" >>>>>> Search limit:" + args.getSearchIn()); 
+				StringBuilder rosewikiKeywords = new StringBuilder(256);
+	
+				this.generateRosewikiKeywords(args, rosewikiKeywords);
+	
+				result.appendResults(GenericLuceneDAO.getRoseData(rosewikiKeywords.toString()));
+			} 
+			else {
+				result = new SearchResult<Post>(new ArrayList<Post>());
+				StringBuilder rosewikiKeywords = new StringBuilder(256);
+				
+				this.generateRosewikiKeywords(args, rosewikiKeywords);
+	
+				result.appendResults(GenericLuceneDAO.getRoseData(rosewikiKeywords.toString()));
 			}
-			
-			// LX -- First generate keywords, then call getRoseData(), add the returned Post list to "result"
-			
-			StringBuilder rosewikiKeywords = new StringBuilder(256);
-
-			this.generateRosewikiKeywords(args, rosewikiKeywords);
-
-			result.appendResults(GenericLuceneDAO.getRoseData(rosewikiKeywords.toString()));
 			
 		} catch (Exception e) {
 			throw new SearchException(e);

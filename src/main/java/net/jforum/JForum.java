@@ -267,8 +267,9 @@ public class JForum extends JForumBaseServlet
             if (contentType == null) {
                 contentType = "text/html; charset=" + encoding;
             }
-
-                        
+            // LX
+            DumpStack.dumpText(">>>>>>> request: " + request.getQueryString());
+                      
             response.setContentType(contentType);
 
             // X-Frame-Options header
@@ -289,7 +290,6 @@ public class JForum extends JForumBaseServlet
                 out_writer.close();
                 fw.close();
                 */
-            	DumpStack.dumpText(">>> context content " + JForumExecutionContext.getTemplateContext().get("JForumContext").toString());
             	
                 outWriter = new BufferedWriter(new OutputStreamWriter(response.getOutputStream(), encoding));
                 template.process(JForumExecutionContext.getTemplateContext(), outWriter);
