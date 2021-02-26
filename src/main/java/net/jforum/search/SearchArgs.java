@@ -306,6 +306,10 @@ public class SearchArgs
 		return "SUBJECT".equals(searchIn);
 	}
 
+	public boolean shouldLimitSearchToWiki() {
+		return "WIKI".equals(searchIn);
+	}
+	
 	// -----------------------------------------------------------------
 
 	private String formatNullOrTrim(String value) {
