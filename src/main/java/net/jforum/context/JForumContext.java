@@ -43,6 +43,7 @@
 package net.jforum.context;
 
 import net.jforum.util.preferences.ConfigKeys;
+import net.jforum.util.DumpStack;
 
 /**
  * @author Marc Wick
@@ -91,6 +92,10 @@ public class JForumContext implements ForumContext
 
 	@Override public String encodeURL(final String url)
 	{
+		
+		// LX
+		DumpStack.dumpText("JforumContext.encodeURL URL:" + url);
+		
 		return this.encodeURL(url, servletExtension);
 	}
 

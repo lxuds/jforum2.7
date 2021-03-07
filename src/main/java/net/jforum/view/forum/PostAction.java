@@ -101,6 +101,8 @@ import net.jforum.view.forum.common.PollCommon;
 import net.jforum.view.forum.common.PostCommon;
 import net.jforum.view.forum.common.TopicsCommon;
 import net.jforum.view.forum.common.ViewCommon;
+import net.jforum.util.DumpStack;
+
 
 /**
  * @author Rafael Steil
@@ -113,10 +115,16 @@ public class PostAction extends Command
 	public PostAction(RequestContext request, SimpleHash templateContext) {
 		super.context = templateContext;
 		super.request = request;
+		// LX
+		//DumpStack.dumpStack();
+		
 	}
 
 	@Override public void list()
 	{
+		
+		// LX
+		DumpStack.dumpStack();
 		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
 		PollDAO pollDao = DataAccessDriver.getInstance().newPollDAO();
 		TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
@@ -260,6 +268,9 @@ public class PostAction extends Command
 	 */
 	public void preList()
 	{
+		// LX
+		DumpStack.dumpStack();
+
 		int postId = this.request.getIntParameter("post_id");
 
 		PostDAO dao = DataAccessDriver.getInstance().newPostDAO();
@@ -283,13 +294,47 @@ public class PostAction extends Command
 		if (count > postsPerPage) {
 			page = Integer.toString(postsPerPage * ((count - 1) / postsPerPage)) + "/";
 		} 
-
+		// LX
+        DumpStack.dumpText(">>>>>>>>> preList redirect link: " + this.request.getContextPath() + "/posts/list/"
+    			+ page + topicId
+    			+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION) 
+    			+ "#p" + postId);
+		
 		JForumExecutionContext.setRedirect(this.request.getContextPath() + "/posts/list/"
 			+ page + topicId
 			+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION) 
 			+ "#p" + postId);
+		
 	}
 
+	
+	
+	// LX
+	// wikiList handles the information for wiki_show.htm 
+	
+	public void wikiList()
+	{
+		// LX
+		DumpStack.dumpStack();
+
+		// LX 
+		// post_id corresponds to rose_id in table rose_info
+		int postId = this.request.getIntParameter("post_id");
+		
+		PostDAO dao = DataAccessDriver.getInstance().newPostDAO();
+		Post post = dao.selectRosewikiById(postId);
+		
+		this.setTemplateName(TemplateKeys.POSTS_WIKI_LIST);
+		this.context.put("description", post.getText());
+		this.context.put("canRemove", false);
+		this.context.put("isAdmin", false);
+		this.context.put("isModerator", false);
+
+
+
+		//JForumExecutionContext.setRedirect(this.request.getContextPath() + "/wiki/wiki" + postId + ".htm");
+	}
+	
 	/**
 	 * Votes on a poll.
 	 */

@@ -64,8 +64,10 @@ public interface PostDAO
 	 * @param postId The Post ID to search
 	 * @return <code>Post</code>object containing all the information
 	 */
-	Post selectById(int postId) ;
 		
+	Post selectById(int postId) ;
+
+
 	/**
 	 * Delete a Post.
 	 * 
@@ -149,4 +151,7 @@ public interface PostDAO
 	List<Post> selectLatestForRSS(int limit) ;
 	
 	List<Post> selectHotForRSS(int limit) ;
+
+	Post selectRosewikiById(int postId);
+
 }

@@ -199,6 +199,7 @@ public class GenericLuceneDAO implements LuceneDAO
 		//post.setEditTime(new Date(System.currentTimeMillis()));
 		post.setForumId(3);
 		post.setUserId(4);
+		post.setId(rs.getInt("rose_id"));
 		//post.setPostUsername("dog");
 
 

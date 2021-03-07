@@ -20,6 +20,7 @@ cp -r ${INDEX_DIR} /tmp/jforumindex
 echo "3) Install new webserver package"
 cp /Users/lxu/project/jforum2.7/target/jforum.war /Users/lxu/program/apache-tomcat-9.0.36/webapps
 
+
 echo "4) Start webserver..."
 ${APACHE_BIN}/startup.sh
 

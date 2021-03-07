@@ -186,6 +186,12 @@ PostModel.selectById = SELECT p.post_id, p.topic_id, p.forum_id, p.user_id, p.po
     AND p.post_id = ? \
     AND p.user_id = u.user_id \
     AND p.topic_id = t.topic_id
+    
+    
+PostModel.selectRosewikiById = SELECT rose_info.description, rose_info.rose_id \
+    FROM rose_info \
+    WHERE rose_info.rose_id = ? 
+
 
 PostModel.deletePost = DELETE FROM jforum_posts WHERE post_id = ?
 PostModel.deletePostText = DELETE FROM jforum_posts_text WHERE post_id = ?
@@ -508,7 +514,7 @@ SearchModel.getPostsDataForLucene = SELECT p.post_id, p.forum_id, p.topic_id, p.
 
 
 
-SearchModel.getPostsRoseDataForLucene = SELECT rose_info.description, ts_rank_cd(textsearchable_index_col, query ) AS rank \
+SearchModel.getPostsRoseDataForLucene = SELECT rose_info.description, rose_info.rose_id, ts_rank_cd(textsearchable_index_col, query ) AS rank \
     FROM rose_info, to_tsquery('simple', ?) AS query \
     WHERE query @@ textsearchable_index_col \
     ORDER BY rank DESC \

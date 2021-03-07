@@ -97,6 +97,67 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 		}
 	}
 
+	
+	@Override public Post selectRosewikiById(int postId)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("PostModel.selectRosewikiById"));
+			pstmt.setInt(1, postId);
+
+			rs = pstmt.executeQuery();
+
+			Post post = new Post();
+
+			if (rs.next()) {
+				post = this.makeRosePost(rs);
+			}
+
+			return post;
+		}
+		catch (SQLException e) {
+			throw new DatabaseException(e);
+		}
+		finally {
+			DbUtils.close(rs, pstmt);
+		}
+	}
+
+	
+
+	
+	protected Post makeRosePost(ResultSet rs) throws SQLException
+	{
+		Post post = new Post();
+		post.setId(rs.getInt("rose_id"));
+		post.setTopicId(16);
+		post.setForumId(3);
+		post.setUserId(4);
+        post.setType(2);
+		//Timestamp postTime = rs.getTimestamp("post_time");
+		//post.setTime(new Date(postTime.getTime()));
+		//post.setUserIp(rs.getString("poster_ip"));
+		//post.setBbCodeEnabled(rs.getInt("enable_bbcode") > 0);
+		//post.setHtmlEnabled(rs.getInt("enable_html") > 0);
+		//post.setSmiliesEnabled(rs.getInt("enable_smilies") > 0);
+		//post.setSignatureEnabled(rs.getInt("enable_sig") > 0);
+		//post.setEditCount(rs.getInt("post_edit_count"));
+
+		//Timestamp editTime = rs.getTimestamp("post_edit_time");
+		//post.setEditTime(editTime != null ? new Date(editTime.getTime()) : null);
+
+		post.setSubject("Rose Wiki");
+		post.setText(rs.getString("description"));
+		//post.setPostUsername(rs.getString("username"));
+		//post.hasAttachments(rs.getInt("attach") > 0);
+		//post.setModerate(rs.getInt("need_moderate") == 1);
+
+		//post.setKarma(DataAccessDriver.getInstance().newKarmaDAO().getPostKarma(post.getId()));
+
+		return post;
+	}
+	
 	protected Post makePost(ResultSet rs) throws SQLException
 	{
 		Post post = new Post();
@@ -104,7 +165,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 		post.setTopicId(rs.getInt("topic_id"));
 		post.setForumId(rs.getInt("forum_id"));
 		post.setUserId(rs.getInt("user_id"));
-
+        post.setType(1);
 		Timestamp postTime = rs.getTimestamp("post_time");
 		post.setTime(new Date(postTime.getTime()));
 		post.setUserIp(rs.getString("poster_ip"));
