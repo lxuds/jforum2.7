@@ -55,6 +55,7 @@ import net.jforum.JForumExecutionContext;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.dao.UserDAO;
 import net.jforum.entities.Post;
+import net.jforum.entities.Rose;
 import net.jforum.exceptions.DatabaseException;
 import net.jforum.repository.ForumRepository;
 import net.jforum.search.SearchFacade;
@@ -98,7 +99,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 	}
 
 	
-	@Override public Post selectRosewikiById(int postId)
+	@Override public Rose selectRosewikiById(int postId)
 	{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -108,13 +109,13 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 
 			rs = pstmt.executeQuery();
 
-			Post post = new Post();
+			Rose rose = new Rose();
 
 			if (rs.next()) {
-				post = this.makeRosePost(rs);
+				rose = this.makeRosePost(rs);
 			}
 
-			return post;
+			return rose;
 		}
 		catch (SQLException e) {
 			throw new DatabaseException(e);
@@ -127,14 +128,14 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 	
 
 	
-	protected Post makeRosePost(ResultSet rs) throws SQLException
+	protected Rose makeRosePost(ResultSet rs) throws SQLException
 	{
-		Post post = new Post();
-		post.setId(rs.getInt("rose_id"));
-		post.setTopicId(16);
-		post.setForumId(3);
-		post.setUserId(4);
-        post.setType(2);
+		Rose rose = new Rose();
+		rose.setId(rs.getInt("rose_id"));
+		rose.setTopicId(16);
+		rose.setForumId(3);
+		rose.setUserId(4);
+        rose.setType(2);
 		//Timestamp postTime = rs.getTimestamp("post_time");
 		//post.setTime(new Date(postTime.getTime()));
 		//post.setUserIp(rs.getString("poster_ip"));
@@ -147,15 +148,29 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 		//Timestamp editTime = rs.getTimestamp("post_edit_time");
 		//post.setEditTime(editTime != null ? new Date(editTime.getTime()) : null);
 
-		post.setSubject("Rose Wiki");
-		post.setText(rs.getString("description"));
+		rose.setSubject("Rose Wiki");
+		rose.setDescription(rs.getString("description"));
+		rose.setRname(rs.getString("rname"));
+		rose.setEname(rs.getString("ename"));
+		rose.setSynonyms(rs.getString("synonyms"));
+		rose.setColor(rs.getString("color"));
+		rose.setFragrance(rs.getString("fragrance"));
+		rose.setPetal(rs.getString("petal"));
+		rose.setCluster(rs.getString("cluster"));
+		rose.setBloomPeriod(rs.getString("bloom_period"));
+		rose.setFoliage(rs.getString("foliage"));
+		rose.setBody(rs.getString("body"));
+		rose.setWidth(rs.getString("width"));
+		rose.setHeight(rs.getString("height"));
+	
+		
 		//post.setPostUsername(rs.getString("username"));
 		//post.hasAttachments(rs.getInt("attach") > 0);
 		//post.setModerate(rs.getInt("need_moderate") == 1);
 
 		//post.setKarma(DataAccessDriver.getInstance().newKarmaDAO().getPostKarma(post.getId()));
 
-		return post;
+		return rose;
 	}
 	
 	protected Post makePost(ResultSet rs) throws SQLException

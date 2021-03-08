@@ -56,30 +56,32 @@ import net.jforum.view.forum.common.ViewCommon;
 public class Post implements Serializable 
 {
 	private static final long serialVersionUID = -6067049478602005132L;
-	private int id;
-	private int topicId;
-	private int forumId;
-	private int userId;
-	private Date time;
-	private String text;
-	private String subject = "";
-	private String postUsername;
-	private boolean bbCodeEnabled = true;
-	private boolean htmlEnabled = true;
-	private boolean smiliesEnabled = true;
-	private boolean signatureEnabled = true;
-	private Date editTime;
-	private int editCount;
-	private String userIp;
-	private boolean canEdit;
-	private KarmaStatus karma;
-	private boolean hasAttachments;
-	private boolean moderate;
-	private int topicType;
+	protected int id;
+	protected int topicId;
+	protected int forumId;
+	protected int userId;
+	protected Date time;
+	protected String text;
+	protected String subject = "";
+	protected String postUsername;
+	protected boolean bbCodeEnabled = true;
+	protected boolean htmlEnabled = true;
+	protected boolean smiliesEnabled = true;
+	protected boolean signatureEnabled = true;
+	protected Date editTime;
+	protected int editCount;
+	protected String userIp;
+	protected boolean canEdit;
+	protected KarmaStatus karma;
+	protected boolean hasAttachments;
+	protected boolean moderate;
+	protected int topicType;
 	
-	// LX
-	private int type;
+  
+	
+	protected int type;
 
+	
 	public Post() { }
 	
 	public Post(int postId)

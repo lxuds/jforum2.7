@@ -45,6 +45,7 @@ package net.jforum.dao;
 import java.util.List;
 
 import net.jforum.entities.Post;
+import net.jforum.entities.Rose;
 
 /**
  * Model interface for {@link net.jforum.entities.Post}.
@@ -152,6 +153,6 @@ public interface PostDAO
 	
 	List<Post> selectHotForRSS(int limit) ;
 
-	Post selectRosewikiById(int postId);
+	Rose selectRosewikiById(int postId);
 
 }

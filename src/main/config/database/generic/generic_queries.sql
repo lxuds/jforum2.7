@@ -188,9 +188,10 @@ PostModel.selectById = SELECT p.post_id, p.topic_id, p.forum_id, p.user_id, p.po
     AND p.topic_id = t.topic_id
     
     
-PostModel.selectRosewikiById = SELECT rose_info.description, rose_info.rose_id \
-    FROM rose_info \
-    WHERE rose_info.rose_id = ? 
+PostModel.selectRosewikiById = SELECT r.rose_id, r.description, r.rname, r.ename, r.synonyms, \
+        r.color, r.fragrance, r.petal, r.cluster, r.bloom_period, r.foliage, r.body, r.width, r.height \
+    FROM rose_info r \
+    WHERE r.rose_id = ? 
 
 
 PostModel.deletePost = DELETE FROM jforum_posts WHERE post_id = ?
