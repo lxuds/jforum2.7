@@ -95,6 +95,40 @@ blockquote.uncited {
 .postinfo .subject { float: left; }
 .postinfo .action { float: right; }
 
+li {
+    background-color: black;
+}
+li:nth-child(odd) {
+    background-color: #fafafa; font-size: 12px; line-height: 1.5em;
+}
+li:nth-child(even) {
+    background-color: #f7f7f8; font-size: 12px; line-height: 1.5em;
+}
+
+.table {margin-top:10px; margin-left:10px}
+.table tr {
+    transition: background 0.2s ease-in; font-size: 12px;
+}
+
+.table tr:nth-child(odd) {
+    background: #fafafa; font-size: 12px;
+}
+
+.table tr:hover {
+    background: #f7f7f8; font-size: 12px;
+    cursor: pointer;
+}
+
+tr.spaceUnder>td {
+  padding-top: 0.8em;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 a.copyright { color: #444444; text-decoration: none; }
 a.copyright:hover { color: #000000; text-decoration: underline; }
 input, textarea, select { border: 1px solid #ccc; font: 11px verdana, arial, helvetica, sans-serif; color: #000000; }

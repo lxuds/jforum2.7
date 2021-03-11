@@ -24,17 +24,18 @@ cp /Users/lxu/project/jforum2.7/target/jforum.war /Users/lxu/program/apache-tomc
 echo "4) Start webserver..."
 ${APACHE_BIN}/startup.sh
 
-sleep 5
+sleep 8
 
 echo "5) Restore jforumLuceneIndex..."
 cp -r /tmp/jforumindex ${INDEX_DIR}
 
+sleep 5
 echo "6) Restart webserver"
 ${APACHE_BIN}/shutdown.sh
 sleep 3
 ${APACHE_BIN}/startup.sh
 
-sleep 5
+sleep 10
 echo "7) Restart webserver"
 ${APACHE_BIN}/shutdown.sh
 sleep 3
