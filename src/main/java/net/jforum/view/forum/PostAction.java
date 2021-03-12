@@ -116,16 +116,10 @@ public class PostAction extends Command
 	public PostAction(RequestContext request, SimpleHash templateContext) {
 		super.context = templateContext;
 		super.request = request;
-		// LX
-		//DumpStack.dumpStack();
-		
 	}
 
 	@Override public void list()
 	{
-		
-		// LX
-		DumpStack.dumpStack();
 		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
 		PollDAO pollDao = DataAccessDriver.getInstance().newPollDAO();
 		TopicDAO topicDao = DataAccessDriver.getInstance().newTopicDAO();
@@ -269,9 +263,6 @@ public class PostAction extends Command
 	 */
 	public void preList()
 	{
-		// LX
-		DumpStack.dumpStack();
-
 		int postId = this.request.getIntParameter("post_id");
 
 		PostDAO dao = DataAccessDriver.getInstance().newPostDAO();
@@ -303,8 +294,7 @@ public class PostAction extends Command
 		
 	}
 
-	
-	
+
 	// LX
 	// wikiList handles the information for wiki_show.htm 
 	

@@ -91,11 +91,7 @@ public class JForumContext implements ForumContext
 	}
 
 	@Override public String encodeURL(final String url)
-	{
-		
-		// LX
-		DumpStack.dumpText("JforumContext.encodeURL URL:" + url);
-		
+	{		
 		return this.encodeURL(url, servletExtension);
 	}
 

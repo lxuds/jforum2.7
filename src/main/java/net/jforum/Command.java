@@ -117,9 +117,7 @@ public abstract class Command
 		this.context = context;
 		
 		final String action = this.request.getAction();
-		
-		// LX
-		DumpStack.dumpText(">>>>> Command.processs action:" + action);
+
 		
 		if (!this.ignoreAction) {
 			try {
