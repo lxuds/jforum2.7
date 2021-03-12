@@ -76,6 +76,7 @@ import net.jforum.entities.Poll;
 import net.jforum.entities.PollChanges;
 import net.jforum.entities.Post;
 import net.jforum.entities.QuotaLimit;
+import net.jforum.entities.Rose;
 import net.jforum.entities.Topic;
 import net.jforum.entities.User;
 import net.jforum.entities.UserSession;
@@ -101,6 +102,8 @@ import net.jforum.view.forum.common.PollCommon;
 import net.jforum.view.forum.common.PostCommon;
 import net.jforum.view.forum.common.TopicsCommon;
 import net.jforum.view.forum.common.ViewCommon;
+import net.jforum.util.DumpStack;
+
 
 /**
  * @author Rafael Steil
@@ -288,8 +291,43 @@ public class PostAction extends Command
 			+ page + topicId
 			+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION) 
 			+ "#p" + postId);
+		
 	}
 
+
+	// LX
+	// wikiList handles the information for wiki_show.htm 
+	
+	public void wikiList()
+	{
+		// LX 
+		// post_id corresponds to rose_id in table rose_info
+		int postId = this.request.getIntParameter("post_id");
+		
+		PostDAO dao = DataAccessDriver.getInstance().newPostDAO();
+		Rose rose = dao.selectRosewikiById(postId);
+		
+		this.setTemplateName(TemplateKeys.POSTS_WIKI_LIST);
+		this.context.put("description", rose.getDescription());
+		this.context.put("rname", rose.getRname());
+		this.context.put("ename", rose.getEname());
+		this.context.put("synonyms", rose.getSynonyms());
+		this.context.put("color", rose.getColor());
+		this.context.put("fragrance", rose.getFragrance());
+		this.context.put("petal", rose.getPetal());
+		this.context.put("cluster", rose.getCluster());
+		this.context.put("bloomPeriod", rose.getBloomPeriod());
+		this.context.put("foliage", rose.getFoliage());
+		this.context.put("body", rose.getBody());
+		this.context.put("width", rose.getWidth());
+		this.context.put("height", rose.getHeight());
+		this.context.put("canRemove", false);
+		this.context.put("isAdmin", false);
+		this.context.put("isModerator", false);
+		
+		//JForumExecutionContext.setRedirect(this.request.getContextPath() + "/wiki/wiki" + postId + ".htm");
+	}
+	
 	/**
 	 * Votes on a poll.
 	 */

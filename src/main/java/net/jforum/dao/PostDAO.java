@@ -45,6 +45,7 @@ package net.jforum.dao;
 import java.util.List;
 
 import net.jforum.entities.Post;
+import net.jforum.entities.Rose;
 
 /**
  * Model interface for {@link net.jforum.entities.Post}.
@@ -64,8 +65,10 @@ public interface PostDAO
 	 * @param postId The Post ID to search
 	 * @return <code>Post</code>object containing all the information
 	 */
-	Post selectById(int postId) ;
 		
+	Post selectById(int postId) ;
+
+
 	/**
 	 * Delete a Post.
 	 * 
@@ -149,4 +152,7 @@ public interface PostDAO
 	List<Post> selectLatestForRSS(int limit) ;
 	
 	List<Post> selectHotForRSS(int limit) ;
+
+	Rose selectRosewikiById(int postId);
+
 }

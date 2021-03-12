@@ -73,6 +73,7 @@ public final class TemplateKeys
 	public static final String MODERATION_DENIED = "moderation.denied";
 
 	public static final String POSTS_LIST = "posts.list";
+	public static final String POSTS_WIKI_LIST = "posts.wikiList";	
 	public static final String POSTS_USER_POSTS_LIST = "posts.userposts.list";
 	public static final String POSTS_REVIEW = "posts.review";
 	public static final String POSTS_TOPIC_NOT_FOUND = "posts.topic.not.found";

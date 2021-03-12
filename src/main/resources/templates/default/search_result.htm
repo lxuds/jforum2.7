@@ -50,15 +50,20 @@
 					    <#if post.type == 2>
 					        <td class="postinfo">
 								<span class="gen">
+								<#assign postUrl = JForumContext.encodeURL("/posts/wikiList/${post.id}")/>
+								
   								    <img class="icon_folder" src="${contextPath}/images/rosewiki.jpeg" alt=""/>
   								    
 								</span>
 							</td>
+
 							<tr>
-							    <td class="row1 gen">
-							    	${post.text}
-							    </td>
-						    </tr>
+								<td class="row1 gen">
+									${post.text}
+									<br />
+	                                <div align="right"><a href="${postUrl}">${I18n.getMessage("Search.viewWiki")}</a></div>
+								</td>
+							</tr>						    
 						<#elseif post.type==1>
 							<td class="postinfo">
 								<#assign postUrl = JForumContext.encodeURL("/posts/preList/${post.topicId}/${post.id}")/>
@@ -72,13 +77,13 @@
 									<#if post.topicType == TOPIC_WIKI && post.formattedEditTime != "">${I18n.getMessage("Search.edited")} ${post.formattedEditTime}</#if>
 								</span>
 							</td>
-						<tr>
-							<td class="row1 gen">
-								${post.text}
-								<br />
-                                <div align="right"><a href="${postUrl}">${I18n.getMessage("Search.viewMessage")}</a></div>
-							</td>
-						</tr>
+							<tr>
+								<td class="row1 gen">
+									${post.text}
+									<br />
+	                                <div align="right"><a href="${postUrl}">${I18n.getMessage("Search.viewMessage")}</a></div>
+								</td>
+							</tr>
 							
 					    </#if>
 						</tr>

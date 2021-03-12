@@ -55,6 +55,7 @@ import net.jforum.JForumExecutionContext;
 import net.jforum.dao.DataAccessDriver;
 import net.jforum.dao.UserDAO;
 import net.jforum.entities.Post;
+import net.jforum.entities.Rose;
 import net.jforum.exceptions.DatabaseException;
 import net.jforum.repository.ForumRepository;
 import net.jforum.search.SearchFacade;
@@ -97,6 +98,63 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 		}
 	}
 
+	
+	@Override public Rose selectRosewikiById(int postId)
+	{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("PostModel.selectRosewikiById"));
+			pstmt.setInt(1, postId);
+
+			rs = pstmt.executeQuery();
+
+			Rose rose = new Rose();
+
+			if (rs.next()) {
+				rose = this.makeRosePost(rs);
+			}
+
+			return rose;
+		}
+		catch (SQLException e) {
+			throw new DatabaseException(e);
+		}
+		finally {
+			DbUtils.close(rs, pstmt);
+		}
+	}
+
+	
+
+	
+	protected Rose makeRosePost(ResultSet rs) throws SQLException
+	{
+		Rose rose = new Rose();
+		rose.setId(rs.getInt("rose_id"));
+		rose.setTopicId(16);
+		rose.setForumId(3);
+		rose.setUserId(4);
+        rose.setType(2);
+
+		rose.setSubject("Rose Wiki");
+		rose.setDescription(rs.getString("description"));
+		rose.setRname(rs.getString("rname"));
+		rose.setEname(rs.getString("ename"));
+		rose.setSynonyms(rs.getString("synonyms"));
+		rose.setColor(rs.getString("color"));
+		rose.setFragrance(rs.getString("fragrance"));
+		rose.setPetal(rs.getString("petal"));
+		rose.setCluster(rs.getString("cluster"));
+		rose.setBloomPeriod(rs.getString("bloom_period"));
+		rose.setFoliage(rs.getString("foliage"));
+		rose.setBody(rs.getString("body"));
+		rose.setWidth(rs.getString("width"));
+		rose.setHeight(rs.getString("height"));
+
+		return rose;
+	}
+	
 	protected Post makePost(ResultSet rs) throws SQLException
 	{
 		Post post = new Post();
@@ -104,7 +162,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 		post.setTopicId(rs.getInt("topic_id"));
 		post.setForumId(rs.getInt("forum_id"));
 		post.setUserId(rs.getInt("user_id"));
-
+        post.setType(1);
 		Timestamp postTime = rs.getTimestamp("post_time");
 		post.setTime(new Date(postTime.getTime()));
 		post.setUserIp(rs.getString("poster_ip"));

@@ -58,6 +58,7 @@ import net.jforum.repository.Tpl;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 import net.jforum.util.preferences.TemplateKeys;
+import net.jforum.util.DumpStack;
 
 /**
  * <code>Command</code> Pattern implementation.
@@ -116,6 +117,7 @@ public abstract class Command
 		this.context = context;
 		
 		final String action = this.request.getAction();
+
 		
 		if (!this.ignoreAction) {
 			try {
