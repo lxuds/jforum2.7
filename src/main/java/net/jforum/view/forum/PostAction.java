@@ -295,12 +295,7 @@ public class PostAction extends Command
 		if (count > postsPerPage) {
 			page = Integer.toString(postsPerPage * ((count - 1) / postsPerPage)) + "/";
 		} 
-		// LX
-        DumpStack.dumpText(">>>>>>>>> preList redirect link: " + this.request.getContextPath() + "/posts/list/"
-    			+ page + topicId
-    			+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION) 
-    			+ "#p" + postId);
-		
+
 		JForumExecutionContext.setRedirect(this.request.getContextPath() + "/posts/list/"
 			+ page + topicId
 			+ SystemGlobals.getValue(ConfigKeys.SERVLET_EXTENSION) 
@@ -315,9 +310,6 @@ public class PostAction extends Command
 	
 	public void wikiList()
 	{
-		// LX
-		DumpStack.dumpStack();
-
 		// LX 
 		// post_id corresponds to rose_id in table rose_info
 		int postId = this.request.getIntParameter("post_id");
@@ -342,8 +334,7 @@ public class PostAction extends Command
 		this.context.put("canRemove", false);
 		this.context.put("isAdmin", false);
 		this.context.put("isModerator", false);
-
-
+		
 		//JForumExecutionContext.setRedirect(this.request.getContextPath() + "/wiki/wiki" + postId + ".htm");
 	}
 	

@@ -136,17 +136,6 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 		rose.setForumId(3);
 		rose.setUserId(4);
         rose.setType(2);
-		//Timestamp postTime = rs.getTimestamp("post_time");
-		//post.setTime(new Date(postTime.getTime()));
-		//post.setUserIp(rs.getString("poster_ip"));
-		//post.setBbCodeEnabled(rs.getInt("enable_bbcode") > 0);
-		//post.setHtmlEnabled(rs.getInt("enable_html") > 0);
-		//post.setSmiliesEnabled(rs.getInt("enable_smilies") > 0);
-		//post.setSignatureEnabled(rs.getInt("enable_sig") > 0);
-		//post.setEditCount(rs.getInt("post_edit_count"));
-
-		//Timestamp editTime = rs.getTimestamp("post_edit_time");
-		//post.setEditTime(editTime != null ? new Date(editTime.getTime()) : null);
 
 		rose.setSubject("Rose Wiki");
 		rose.setDescription(rs.getString("description"));
@@ -162,13 +151,6 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 		rose.setBody(rs.getString("body"));
 		rose.setWidth(rs.getString("width"));
 		rose.setHeight(rs.getString("height"));
-	
-		
-		//post.setPostUsername(rs.getString("username"));
-		//post.hasAttachments(rs.getInt("attach") > 0);
-		//post.setModerate(rs.getInt("need_moderate") == 1);
-
-		//post.setKarma(DataAccessDriver.getInstance().newKarmaDAO().getPostKarma(post.getId()));
 
 		return rose;
 	}
