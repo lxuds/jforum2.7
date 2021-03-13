@@ -105,28 +105,30 @@ li:nth-child(even) {
     background-color: #f7f7f8; font-size: 12px; line-height: 1.5em;
 }
 
-.table {margin-left: auto; margin-right:auto}
-.table tr {
+.rosetable {width: 100%}
+
+.rosetable tr {
     transition: background 0.2s ease-in; font-size: 12px;
 }
 
-.table tr:nth-child(odd) {
+.rosetable tr:nth-child(odd) {
     background: #fafafa; font-size: 12px;
 }
 
-.table tr:hover {
+.rosetable tr:hover {
     background: #f7f7f8; font-size: 12px;
     cursor: pointer;
 }
+
 
 tr.spaceUnder>td {
   padding-top: 0.8em;
 }
 
-.center {
-  margin-left: auto;
-  margin-right: auto;
-}
+.rosewiki {
+    margin-left: 10%;
+    width: 70%;
+    border: #cccccc 1px solid;}
 
 
 a.copyright { color: #444444; text-decoration: none; }
