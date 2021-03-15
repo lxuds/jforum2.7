@@ -126,9 +126,10 @@ tr.spaceUnder>td {
 }
 
 .rosewiki {
-    margin-left: 10%;
-    width: 70%;
-    border: #cccccc 1px solid;}
+    margin-left: 5%;
+    width: 50%;
+    border: #cccccc 1px solid;
+    border-spacing: 10px;}
 
 
 a.copyright { color: #444444; text-decoration: none; }
