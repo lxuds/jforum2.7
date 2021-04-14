@@ -126,10 +126,48 @@ tr.spaceUnder>td {
 }
 
 .rosewiki {
-    margin-left: 5%;
+    margin-left: auto;
     width: 50%;
-    border: #cccccc 1px solid;
     border-spacing: 10px;}
+
+.row {
+    margin-left: auto;
+    margin-right: auto;
+    
+    }
+    
+.row:last-child {
+    margin-bottom: 0;}
+    
+    
+.row .col.m6{
+    width: 50%;
+    left: auto;
+    margin-left: auto;
+    right: auto;}
+    
+    .col{
+    box-sizing: border-box;
+    float: left;
+    min-height: 1px;
+    padding-top: 0px;
+    padding-right: 0.5rem;
+    padding-bottom: 0px;
+    padding-left: 0.5rem;
+    }
+    
+    .col.xs12{
+    width: 100%;
+    }
+
+.template-product__aside{
+    padding-left: .125rem;
+    width: 100%;
+    }
+
+.template-product__aside *, :after, :before, html {
+    box-sizing: border-box;
+    }
 
 
 a.copyright { color: #444444; text-decoration: none; }
