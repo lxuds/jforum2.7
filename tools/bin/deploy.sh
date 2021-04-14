@@ -29,7 +29,7 @@ sleep 8
 echo "5) Restore jforumLuceneIndex..."
 cp -r /tmp/jforumindex ${INDEX_DIR}
 
-sleep 5
+sleep 8
 echo "6) Restart webserver"
 ${APACHE_BIN}/shutdown.sh
 sleep 3

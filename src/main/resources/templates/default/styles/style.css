@@ -105,28 +105,69 @@ li:nth-child(even) {
     background-color: #f7f7f8; font-size: 12px; line-height: 1.5em;
 }
 
-.table {margin-left: auto; margin-right:auto}
-.table tr {
+.rosetable {width: 100%}
+
+.rosetable tr {
     transition: background 0.2s ease-in; font-size: 12px;
 }
 
-.table tr:nth-child(odd) {
+.rosetable tr:nth-child(odd) {
     background: #fafafa; font-size: 12px;
 }
 
-.table tr:hover {
+.rosetable tr:hover {
     background: #f7f7f8; font-size: 12px;
     cursor: pointer;
 }
+
 
 tr.spaceUnder>td {
   padding-top: 0.8em;
 }
 
-.center {
-  margin-left: auto;
-  margin-right: auto;
-}
+.rosewiki {
+    margin-left: auto;
+    width: 50%;
+    border-spacing: 10px;}
+
+.row {
+    margin-left: auto;
+    margin-right: auto;
+    
+    }
+    
+.row:last-child {
+    margin-bottom: 0;}
+    
+    
+.row .col.m6{
+    width: 50%;
+    left: auto;
+    margin-left: auto;
+    right: auto;}
+    
+    .col{
+    box-sizing: border-box;
+    float: left;
+    min-height: 1px;
+    padding-top: 0px;
+    padding-right: 0.5rem;
+    padding-bottom: 0px;
+    padding-left: 0.5rem;
+    }
+    
+    .col.xs12{
+    width: 100%;
+    }
+
+.template-product__aside{
+    padding-left: .125rem;
+    width: 100%;
+    }
+
+.template-product__aside *, :after, :before, html {
+    box-sizing: border-box;
+    }
 
 
 a.copyright { color: #444444; text-decoration: none; }
