@@ -8,9 +8,13 @@
 	<meta http-equiv="Expires" content="-1" />
 	<meta name="description" content="here goes the board description" />
 	<meta name="keywords" content="some keywords for your board" />
-	<link rel="stylesheet" type="text/css" href="/jforum/templates/default/styles/style.css" />
 	<link rel="stylesheet" type="text/css" href="/jforum/templates/default/styles/en_US.css" />
 	<link rel="stylesheet" type="text/css" href="/jforum/templates/default/styles/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/jforum/templates/default/styles/style.css" />
+	<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'> -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
     <script src = "/jforum/templates/default/js/jquery-3.6.0.min.js"></script>
     <script src = "/jforum/templates/default/js/bootstrap.min.js"></script>
 	<title>Generous Gardener Forum</title>
@@ -26,31 +30,159 @@ Modifications by JForum Team
 
 <header>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
 	  <div class="container">
-	  	<a href="http://localhost/jforum/forums/list.page" class="float-start d-none d-md-inline d-lg-inline"><img src="/jforum/templates/default/images/logo.jpg" vspace="1" alt="[Logo]" />
+	  	<a href="http://localhost/jforum/forums/list.page" class="float-start d-none d-lg-inline"><img src="/jforum/templates/default/images/logo.jpg" vspace="1" alt="[Logo]" />
 	    </a>
 	   <div class="navbar-brand">
-		 <a href="http://localhost/jforum/forums/list.page"><h2>Generous Gardener Forum</h2> </a>
+		 <a href="http://localhost/jforum/forums/list.page"><h3>Generous Gardener Forum</h3> </a>
 	   </div>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
+
 			</button>
-			    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-			        <li class="nav-item">
-			          <a class="nav-link active" aria-current="page" href="#">Home</a>
-			        </li>
-			        <li class="nav-item">
-			          <a class="nav-link" href="#">Link</a>
-			        </li>
-			      </ul>
-			      <form class="d-flex">
-			        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-			        <button class="btn btn-outline-success" type="submit">Search</button>
-			      </form>
-			    </div>
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+		      <form class="d-flex">
+		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+		        <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button>
+		      </form>
+		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<!-- 		        <li class="nav-item">
+		          <a class="nav-link active" aria-current="page" href="#">Home</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="#">Link</a>
+		        </li> -->
+		        <li class="nav-item">
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					  Log In
+					</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+					        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+					      </div>
+					      <div class="modal-body">
+
+						      <div>
+						        	By continuing, you agree to our User Agreement and Privacy Policy.
+						      </div>
+						      </br>
+						      <form>
+								  <div class="mb-3">
+								    <label for="exampleInputEmail1" class="form-label">Email address</label>
+								    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+								    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+								  </div>
+								  <div class="mb-3">
+								    <label for="exampleInputPassword1" class="form-label">Password</label>
+								    <input type="password" class="form-control" id="exampleInputPassword1">
+								  </div>
+<!-- 								  <div class="mb-3 form-check">
+								    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+								    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+								  </div> -->
+
+								  <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+
+								<!-- 2 column grid layout for inline styling -->
+								  <div class="row mb-4">
+								    <div class="col d-flex justify-content-left">
+								      <!-- Checkbox -->
+								      <div class="form-check">
+								        <input
+								          class="form-check-input"
+								          type="checkbox"
+								          value=""
+								          id="form1Example3"
+								          checked
+								        />
+								        <label class="form-check-label" for="form1Example3"> Remember me </label>
+								      </div>
+								    </div>
+
+								    <div class="col">
+								      <!-- Simple link -->
+								      <a href="#!">Forgot your password?</a>
+								    </div>
+								  </div>
+
+								  <!-- Submit button -->
+								  <div class="vertical-center">
+								    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+								  </div>
+
+								<!-- Register buttons -->
+								  <div class="text-center">
+								    <p>Not a member? <a href="#!">Register</a></p>
+								    <p>or sign up with:</p>
+								    <button type="button" class="btn btn-primary btn-floating mx-1">
+								      <i class="fab fa-facebook-f"></i>
+								    </button>
+
+								    <button type="button" class="btn btn-primary btn-floating mx-1">
+								      <i class="fab fa-google"></i>
+								    </button>
+
+								    <button type="button" class="btn btn-primary btn-floating mx-1">
+								      <i class="fab fa-twitter"></i>
+								    </button>
+
+								    <button type="button" class="btn btn-primary btn-floating mx-1">
+								      <i class="fab fa-github"></i>
+								    </button>
+								  </div>
+
+
+
+							  </form>
+						  </div>
+<!-- 					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary">Save changes</button>
+					      </div> -->
+					    </div>
+					  </div>
+					</div>
+			    </li>
+			    <li class="nav-item">
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					  Sign Up
+					</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        ...
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary">Save changes</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</li>
+
+		      </ul>
+
+
+		    </div>
+
+
+
 	  </div>
 	</nav>
 
@@ -79,6 +211,7 @@ Modifications by JForum Team
   	</nav>
   	
   </header> -->
+<div class="container">
 
 <table width="100%" class="table">
 
@@ -116,7 +249,7 @@ Modifications by JForum Team
 				</tr> -->
 <!-- 			</table>
  -->
-			<table class="forumline forumlist" cellspacing="1" cellpadding="2" width="100%">
+			<table class="forumline forumlist" cellspacing="1" cellpadding="2" width="80%">
 				<tr>
 					<th class="thcornerl" nowrap="nowrap" colspan="2">&nbsp;Forums&nbsp;</th>
 					<th class="thtop" nowrap="nowrap" width="50">&nbsp;Topics&nbsp;</th>
@@ -188,13 +321,13 @@ Modifications by JForum Team
 				<!-- END OF FORUM LISTING -->
 			</table>
 
-			<table cellspacing="0" cellpadding="2" width="100%" align="center">
+			<table cellspacing="0" cellpadding="2" width="80%" align="center">
 				<tr>
 					<td align="left"><span class="gensmall">&nbsp;</span></td>
 				</tr>
 			</table>
 
-			<table class="forumline" cellspacing="1" cellpadding="3" width="100%">
+<!-- 			<table class="forumline" cellspacing="1" cellpadding="3" width="80%">
 				<tr>
 					<td class="cathead" colspan="2"><span class="cattitle">Who is online</span></td>
 				</tr>
@@ -216,16 +349,15 @@ Modifications by JForum Team
 								<a href="/jforum/user/profile/1.page">Anonymous</a>&nbsp;
 					</td>
 				</tr>
-			</table>
+			</table> -->
 
-			<br />
-
+<!-- 
 			<form name="formlogin" accept-charset="UTF-8" action="/jforum/jforum.page" method="post">
 				<input type="hidden" name="module" value="user" />
 				<input type="hidden" name="action" value="validateLogin" />
                 <input type="hidden" name="OWASP_CSRFTOKEN" value="C52M-E56N-DEEH-TM99-DXG5-5TT3-QCNB-XO5B" />
                 
-				<table class="forumline" cellspacing="1" cellpadding="3" width="100%">
+				<table class="forumline" cellspacing="1" cellpadding="2" width="80%">
 					<tr>
 						<td class="cathead"><a name="login2" id="login2"></a><span class="cattitle">Login</span></td>
 					</tr>
@@ -243,7 +375,7 @@ Modifications by JForum Team
 						</td>
 					</tr>
 				</table>
-			</form>
+			</form> -->
 
 
 			<table cellspacing="3" cellpadding="0" align="center">
@@ -284,18 +416,12 @@ $(document).ready(function() {
 </tr>
 	<tr>
 		<td align="center">
-			<span class="gen">
-				<a href="?nonMobile=false">Mobile view</a>
-				
-			</span>
-		</td>
-	</tr>
-	<tr>
-		<td align="center">
 			<span class="copyright">Powered by <a class="copyright" href="https://sourceforge.net/projects/jforum2/" target="_blank">JForum 2.7.0</a> &copy; 2020 JForum Team &bull; Maintained by <a class="copyright" href="https://www.andowson.com/" target="_blank">Andowson Chang</a> and <a class="copyright" href="https://www.ulfdittmer.com/" target="_blank">Ulf Dittmer</a></span>
 		</td>
 	</tr>
 </table>
+
+</div>
 <iframe src="/jforum/ping_session.jsp" height="0" width="0" frameborder="0" scrolling="no" title="session keeper"></iframe>
 </body>
 </html>
