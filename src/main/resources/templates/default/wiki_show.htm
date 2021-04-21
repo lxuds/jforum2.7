@@ -1,0 +1,161 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+  	  <meta charset="utf-8">
+  	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	  <meta name="viewport" content="width=device-width, initial-scale=1">
+  	  <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+  	  <link rel="stylesheet" type="text/css" href="styles/shariff.complete.css">
+
+  </head>
+
+  <body>
+  	<script src="js/jquery-3.6.0.min.js"></script>
+  	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${jQueryURL}"></script>
+	<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/post_show.js?${startupTime}"></script>
+	<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/post.js?${startupTime}"></script>
+	<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/pagination.js?${startupTime}"></script>
+  </body>
+
+<!-- <#include "header.htm"/>
+<#import "../macros/pagination.ftl" as pagination/>
+<#import "../macros/presentation.ftl" as presentation/>
+
+<#if bannerPages?contains("topic")>
+	<#assign position = 0 />
+	<#include "banner.htm"/>
+</#if> -->
+<!-- 
+<script type="text/javascript" src="${jQueryURL}"></script>
+<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/post_show.js?${startupTime}"></script>
+<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/post.js?${startupTime}"></script>
+<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/pagination.js?${startupTime}"></script>
+<script>
+<#if socialEnabled>
+	<link rel="stylesheet" type="text/css" href="${contextPath}/templates/${templateName}/styles/shariff.complete.css" />
+</#if>
+
+
+
+<#if canRemove || isModerator || isAdmin>
+	function confirmDelete(postId)
+	{
+		if (confirm("${I18n.getMessage("Moderation.ConfirmPostDelete")}")) {
+			var reason = prompt("${I18n.getMessage("ModerationLog.changeReason")}");
+
+			if (reason == null || reason == "") {
+				alert("${I18n.getMessage("ModerationLog.reasonIsEmpty")}");
+				return false;
+			}
+			else {
+				var link = document.getElementById("delete" + postId);
+				link.href += "?log_description=" + encodeURIComponent(reason) + "&log_type=1";
+			}
+
+			return true;
+		}
+		
+		return false;
+	}
+</#if>
+</script>
+ -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+        <table class="rosewiki">
+
+		    <tr>
+			  <td valign="middle" align="left">
+				<span class="maintitle"> ${ename}</span>								
+			  </td>			  
+			</tr>		
+		    <tr>
+		      <td>
+			    <table class="rosetable">
+				    <tr class="spaceUnder">
+				      <td style="width:20%">${I18n.getMessage("PostShow.registrationName")}</td>
+				      <td style="width:80%">${rname}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.exhibitionName")}</td>
+				      <td>${ename}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.synonyms")}</td>
+				      <td>${synonyms}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.description")}</td>
+				      <td>${description}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.bloomPeriod")}</td>
+				      <td>${bloomPeriod}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.cluster")}</td>
+				      <td>${cluster}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.fragrance")}</td>
+				      <td>${fragrance}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.color")}</td>
+				      <td>${color}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.foliage")}</td>
+				      <td>${foliage}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.body")}</td>
+				      <td>${body}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.width")}</td>
+				      <td>${width}</td>
+				    </tr>
+				    <tr class="spaceUnder">
+				      <td>${I18n.getMessage("PostShow.height")}</td>
+				      <td>${height}</td>
+				    </tr>				    
+			    </table>
+			  </td>
+			</tr>				
+        </table>
+    </div>
+    <div class="col-lg-6">
+      <div class="template-product__aside">
+        <a href="http://localhost/jforum/posts/wikiList/3.page"> <img src="https://www.helpmefind.com//gardening/fs/600/307406.jpg"> </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <#if bannerPages?contains("topic")>
+	<#assign position = 3 />
+	<#include "banner.htm"/>
+</#if>
+ -->
+<a name="quick"></a>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	limitURLSize();
+});
+</script>
+<#if socialEnabled>
+	<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/shariff.min.js?${startupTime}"></script>
+</#if>
+
+<#include "bottom.htm"/>
