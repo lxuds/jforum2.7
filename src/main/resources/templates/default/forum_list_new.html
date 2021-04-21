@@ -35,7 +35,7 @@ Modifications by JForum Team
 	  	<a href="http://localhost/jforum/forums/list.page" class="float-start d-none d-lg-inline"><img src="/jforum/templates/default/images/logo.jpg" vspace="1" alt="[Logo]" />
 	    </a>
 	   <div class="navbar-brand">
-		 <a href="http://localhost/jforum/forums/list.page"><h3>Generous Gardener Forum</h3> </a>
+		 <a href="http://localhost/jforum/forums/list.page"><h3 class="forum_name">Generous Gardener Forum</h3> </a>
 	   </div>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,11 +44,19 @@ Modifications by JForum Team
 			</button>
 		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-		      <form class="d-flex">
+<!-- 		      <form class="d-flex">
 		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-		        <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button>
-		      </form>
+		        <button class="btn btn-outline-success btn-sm" type="submit"><i class="fa fa-search fa-sm"></i></button>
+		      </form> -->
 		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		      	<li class="nav-item">
+			      <form class="d-flex">
+			        <input class="form-control-sm me-2" type="search" placeholder="Search" aria-label="Search">
+			        <button class="btn btn-outline-success btn-sm" type="submit"><i class="fas fa-search"></i></button>
+			      </form>
+		      	</li>
+
+
 <!-- 		        <li class="nav-item">
 		          <a class="nav-link active" aria-current="page" href="#">Home</a>
 		        </li>
@@ -56,18 +64,22 @@ Modifications by JForum Team
 		          <a class="nav-link" href="#">Link</a>
 		        </li> -->
 		        <li class="nav-item">
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					<button type="button" class="btn btn-outline-success btn-sm" id="loginbutton" data-bs-toggle="modal" data-bs-target="#exampleModal1">
 					  Log In
 					</button>
 
 					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
 					  <div class="modal-dialog">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-					        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+
+					          <h5 class="modal-title" id="exampleModalLabelLogin">Login</h5>
+					          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
 					      </div>
+
 					      <div class="modal-body">
 
 						      <div>
@@ -75,52 +87,142 @@ Modifications by JForum Team
 						      </div>
 						      </br>
 						      <form>
-								  <div class="mb-3">
-								    <label for="exampleInputEmail1" class="form-label">Email address</label>
-								    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-								    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-								  </div>
-								  <div class="mb-3">
-								    <label for="exampleInputPassword1" class="form-label">Password</label>
-								    <input type="password" class="form-control" id="exampleInputPassword1">
-								  </div>
-<!-- 								  <div class="mb-3 form-check">
-								    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-								    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-								  </div> -->
+							  <!-- Email input -->
+							  <div class="form-outline mb-4">
+							    <input type="email" id="form2Example1" class="form-control" />
+							    <label class="form-label" for="form2Example1">Email address</label>
+							  </div>
 
-								  <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+							  <!-- Password input -->
+							  <div class="form-outline mb-4">
+							    <input type="password" id="form2Example2" class="form-control" />
+							    <label class="form-label" for="form2Example2">Password</label>
+							  </div>
 
-								<!-- 2 column grid layout for inline styling -->
+							  <!-- 2 column grid layout for inline styling -->
+							  <div class="row mb-4">
+							    <div class="col d-flex justify-content-center">
+							      <!-- Checkbox -->
+							      <div class="form-check">
+							        <input
+							          class="form-check-input"
+							          type="checkbox"
+							          value=""
+							          id="form2Example3"
+							          checked
+							        />
+							        <label class="form-check-label" for="form2Example3"> Remember me </label>
+							      </div>
+							    </div>
+
+							    <div class="col">
+							      <!-- Simple link -->
+							      <a href="#!">Forgot password?</a>
+							    </div>
+							  </div>
+
+							  <!-- Submit button -->
+							  <div class="center">
+							    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+							  </div>
+
+							  <!-- Register buttons -->
+							  <div class="text-center">
+							    <p>Not a member? <a href="#!">Register</a></p>
+							    <p>or sign up with:</p>
+							    <button type="button" class="btn btn-primary btn-floating mx-1">
+							      <i class="fab fa-facebook-f"></i>
+							    </button>
+
+							    <button type="button" class="btn btn-primary btn-floating mx-1">
+							      <i class="fab fa-google"></i>
+							    </button>
+
+							    <button type="button" class="btn btn-primary btn-floating mx-1">
+							      <i class="fab fa-twitter"></i>
+							    </button>
+
+							    <button type="button" class="btn btn-primary btn-floating mx-1">
+							      <i class="fab fa-github"></i>
+							    </button>
+							  </div>
+							</form>
+						  </div>
+<!-- 					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary">Save changes</button>
+					      </div> -->
+					    </div>
+					  </div>
+					</div>
+			    </li>
+			    <li class="nav-item">
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+					  Sign Up
+					</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel2">Sign Up</h5>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+
+							<div class="modal-body">
+						      <form>
+								  <!-- 2 column grid layout with text inputs for the first and last names -->
 								  <div class="row mb-4">
-								    <div class="col d-flex justify-content-left">
-								      <!-- Checkbox -->
-								      <div class="form-check">
-								        <input
-								          class="form-check-input"
-								          type="checkbox"
-								          value=""
-								          id="form1Example3"
-								          checked
-								        />
-								        <label class="form-check-label" for="form1Example3"> Remember me </label>
+								    <div class="col">
+								      <div class="form-outline">
+								        <input type="text" id="form3Example1" class="form-control" />
+								        <label class="form-label" for="form3Example1">First name</label>
 								      </div>
 								    </div>
-
 								    <div class="col">
-								      <!-- Simple link -->
-								      <a href="#!">Forgot your password?</a>
+								      <div class="form-outline">
+								        <input type="text" id="form3Example2" class="form-control" />
+								        <label class="form-label" for="form3Example2">Last name</label>
+								      </div>
 								    </div>
+								  </div>
+
+								  <!-- Email input -->
+								  <div class="form-outline mb-4">
+								    <input type="email" id="form3Example3" class="form-control" />
+								    <label class="form-label" for="form3Example3">Email address</label>
+								  </div>
+
+								  <!-- Password input -->
+								  <div class="form-outline mb-4">
+								    <input type="password" id="form3Example4" class="form-control" />
+								    <label class="form-label" for="form3Example4">Password</label>
+								  </div>
+
+								  <!-- Checkbox -->
+								  <div class="form-check d-flex justify-content-center mb-4">
+								    <input
+								      class="form-check-input me-2"
+								      type="checkbox"
+								      value=""
+								      id="form2Example3"
+								      checked
+								    />
+								    <label class="form-check-label" for="form2Example3">
+								      Subscribe to our newsletter
+								    </label>
 								  </div>
 
 								  <!-- Submit button -->
-								  <div class="vertical-center">
-								    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+								  <div class="center">
+
+								    <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
 								  </div>
 
-								<!-- Register buttons -->
+								  <!-- Register buttons -->
 								  <div class="text-center">
-								    <p>Not a member? <a href="#!">Register</a></p>
 								    <p>or sign up with:</p>
 								    <button type="button" class="btn btn-primary btn-floating mx-1">
 								      <i class="fab fa-facebook-f"></i>
@@ -138,43 +240,19 @@ Modifications by JForum Team
 								      <i class="fab fa-github"></i>
 								    </button>
 								  </div>
+								</form>
 
-
-
-							  </form>
+						      </div>
+<!-- 						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+						          Close
+						        </button>
+						        <button type="button" class="btn btn-primary">Save changes</button>
+						      </div> -->
+						    </div>
 						  </div>
-<!-- 					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					        <button type="button" class="btn btn-primary">Save changes</button>
-					      </div> -->
-					    </div>
-					  </div>
-					</div>
-			    </li>
-			    <li class="nav-item">
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-					  Sign Up
-					</button>
+                    </div>
 
-					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					      </div>
-					      <div class="modal-body">
-					        ...
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					        <button type="button" class="btn btn-primary">Save changes</button>
-					      </div>
-					    </div>
-					  </div>
-					</div>
-				</li>
 
 		      </ul>
 
