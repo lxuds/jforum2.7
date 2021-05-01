@@ -22,7 +22,50 @@
 
 	<title>Generous Gardener Forum</title>
 </head>
-<body class="en_US">
+
+<script>
+function setCookie(cname,cvalue,exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires=" + d.toGMTString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkSession() {
+    var sessionInitialized=getCookie("session_initialized");
+    if (sessionInitialized == '') {
+    	document.getElementById("messageNotificationDiv").innerHTML = "<a href=\"test.html\" class=\"notification1 close\" onclick=\"return setMessageRead();\">Test 1</a>";
+
+    } else {
+    	document.getElementById("messageNotificationDiv").innerHTML = "";
+    }
+}
+
+function setMessageRead() {
+    setCookie("session_initialized", "1", 1);
+}
+</script>
+
+
+
+
+<body class="en_US" onload="checkSession()">
 <!--
 Original theme from phpBB (http://www.phpbb.com) subSilver
 Created by subBlue design
@@ -297,8 +340,77 @@ Modifications by JForum Team
         </div>
         
     </#if>
-<!--         Account dropdown 
- -->		
+
+
+<!-- 	<script type="text/javascript">
+		var myAlert = document.getElementById('myAlert')
+		myAlert.addEventListener('closed.bs.alert', function () {
+			$(document).ready(function() {
+				  $('.notification1').click(function();
+				});
+		})
+
+    </script>
+ -->
+
+<!--    <#if logged && (session.privateMessages > 0)>
+
+
+<a href="${JForumContext.encodeURL("/pm/inbox")}" class="notification1 alert close" onclick="$('.close').click(function() {$('.alert').hide();})">
+  <span><i class="fa fa-envelope" style="font-size:24px; color:black"></i></span>
+  <span class="numberCircle1">${session.privateMessages}</span>
+</a>
+  </#if> -->
+
+<!-- $('.close').click(function() {
+   $('.alert').hide();
+})
+ -->
+<!--    <#if logged && (session.privateMessages > 0)>
+    <div class="alert alert-warning" role="alert" id="myAlert">
+		<a href="${JForumContext.encodeURL("/pm/inbox")}" class="notification1" id="myMailAlert">
+		  <span><i class="fa fa-envelope" style="font-size:24px; color:black"></i></span>
+		  <span class="numberCircle1">${session.privateMessages}</span>
+		</a>
+	</div>
+  </#if>
+ -->
+ <div id="messageNotificationDiv">
+<!--    <#if logged && (session.privateMessages > 0)>
+		<a href="${JForumContext.encodeURL("/pm/inbox")}" class="notification1" id="mailalert">
+		  <span><i class="fa fa-envelope" style="font-size:24px; color:black"></i></span>
+		  <span class="numberCircle1">${session.privateMessages}</span>
+		</a>
+  </#if> -->
+</div>
+
+<!-- <script>
+    $('#mailalert').click(function() {
+   $('#mailalert').hide();
+})
+</script> -->
+<script>
+var button = document.getElementById("mailalert"),
+  count = 0;
+button.onclick = function() {
+  count += 1;
+    if(counter=1)
+    document.getElementById("mailalert").style.visibility = "hidden"
+    document.getElementById("mailalert").disabled=true
+}
+
+</script>
+
+<!--  	<script type="text/javascript">
+		var myAlert = document.getElementById('myAlert')
+		myAlert.addEventListener('closed.bs.alert', function () {
+			document.getElementById('myMailAlert').focus()
+		})
+
+    </script>
+       Account dropdown 
+		 -->
+
         <div class="dropdown">
 		  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> <img src="${contextPath}/templates/${templateName}/images/account-icon-png-0.gif" width="20"/>
 		  </button>
