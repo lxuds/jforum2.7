@@ -24,7 +24,7 @@
 	<title>Generous Gardener Forum</title>
 </head>
 
-<!-- <script>
+<script>
 function setCookie(cname,cvalue,exdays) {
 var d = new Date();
 d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -66,7 +66,7 @@ function setMessageRead() {
 setCookie("session_initialized", "1", 1);
 }
 </script>
- -->
+
 
 <body class="en_US">
 
@@ -175,7 +175,7 @@ function testMsg() {
 					  <!-- Submit button -->
 					  <div class="center">
 					  	<input type="hidden" name="redirect">
-					    <button type="submit" class="btn btn-primary btn-block mb-4 mainoption" value="Login" name="login">Sign in</button>
+					    <button type="submit" class="btn btn-primary btn-block mb-4 mainoption" value="Login" name="login" onClick="return checkSession();">Sign in</button>
 					  </div>
 
 <!-- 					  <script>
