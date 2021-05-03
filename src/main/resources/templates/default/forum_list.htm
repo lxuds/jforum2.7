@@ -16,56 +16,61 @@
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
 
-    <script src = "/jforum/templates/default/js/jquery-3.6.0.min.js"></script>
-    <script src = "/jforum/templates/default/js/bootstrap.min.js"></script>
-
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<title>Generous Gardener Forum</title>
 </head>
 
-<script>
+<!-- <script>
 function setCookie(cname,cvalue,exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  var expires = "expires=" + d.toGMTString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+var d = new Date();
+d.setTime(d.getTime() + (exdays*24*60*60*1000));
+var expires = "expires=" + d.toGMTString();
+document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
+var name = cname + "=";
+var decodedCookie = decodeURIComponent(document.cookie);
+var ca = decodedCookie.split(';');
+for(var i = 0; i < ca.length; i++) {
+var c = ca[i];
+while (c.charAt(0) == ' ') {
+  c = c.substring(1);
+}
+if (c.indexOf(name) == 0) {
+  return c.substring(name.length, c.length);
+}
+}
+return "";
 }
 
 function checkSession() {
-    var sessionInitialized=getCookie("session_initialized");
-    if (sessionInitialized == '') {
-    	document.getElementById("messageNotificationDiv").innerHTML = "<a href=\"test.html\" class=\"notification1 close\" onclick=\"return setMessageRead();\">Test 1</a>";
+var sessionInitialized=getCookie("session_initialized");
+var mainDoc = document.getElementById("messageNotificationDiv");
+alert("Check session status (" + sessionInitialized + ") main doc (" + mainDoc + ")");
+if (sessionInitialized == '') {
+	alert("Check session status A (" + sessionInitialized + ") login doc (" + document + ")");
+	mainDoc.innerHTML = "<a href=\"test.html\" class=\"notification1 close\" onclick=\"return setMessageRead();\">Test 1</a>";
 
-    } else {
-    	document.getElementById("messageNotificationDiv").innerHTML = "";
-    }
+} else {
+	alert("Check session status B (" + sessionInitialized + ")");
+	mainDoc.innerHTML = "";
+}
 }
 
 function setMessageRead() {
-    setCookie("session_initialized", "1", 1);
+setCookie("session_initialized", "1", 1);
 }
 </script>
+ -->
 
+<body class="en_US">
 
-
-
-<body class="en_US" onload="checkSession()">
+<!-- <body class="en_US" onload="checkSession()"> -->
 <!--
 Original theme from phpBB (http://www.phpbb.com) subSilver
 Created by subBlue design
@@ -147,8 +152,8 @@ Modifications by JForum Team
 					    <div class="col d-flex justify-content-center">
 					      <!-- Checkbox -->
 					      <div class="form-check">
-					        <input class="form-check-input" type="checkbox" value="" id="autologin" checked/>
-					        <label class="form-check-label" for="autologin"> Remember me </label>
+					        <input class="form-check-input" type="checkbox" value="" id="autologinRememberMe" checked/>
+					        <label class="form-check-label" for="autologinRememberMe"> Remember me </label>
 					      </div>
 					    </div>
 
@@ -162,11 +167,20 @@ Modifications by JForum Team
 									<label for="autologin">${I18n.getMessage("Login.autoLogon")}</label> <input class="text" type="checkbox" name="autologin" id="autologin"/>
 						</#if>
 
+<!-- <script>
+function testMsg() {
+    alert("Test");
+}
+</script> -->
 					  <!-- Submit button -->
 					  <div class="center">
 					  	<input type="hidden" name="redirect">
 					    <button type="submit" class="btn btn-primary btn-block mb-4 mainoption" value="Login" name="login">Sign in</button>
 					  </div>
+
+<!-- 					  <script>
+					  	document.getElementById("loginbutton").addEventListener("click", checkSession());
+					  </script> -->
 
 					  <!-- Register buttons -->
 					  <div class="text-center">
@@ -195,56 +209,56 @@ Modifications by JForum Team
 		</div>
 
 		<script type="text/javascript">
-		/* <![CDATA[ */
-		function checkemail(str) {
-		    var filter=/^([\w]+(?:(?:-|\+|\.)[\w]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,20}(?:\.[a-z]{2})?)$/i
-		    if (filter.test(str)) return true;
-		    else return false;
-		}
+			/* <![CDATA[ */
+			function checkemail(str) {
+			    var filter=/^([\w]+(?:(?:-|\+|\.)[\w]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,20}(?:\.[a-z]{2})?)$/i
+			    if (filter.test(str)) return true;
+			    else return false;
+			}
 
-		function validateRegistrationForm(f)
-		{
-			if (f.username.value == "") {
-				alert("Please, fill the User field");
-				f.username.focus();
+			function validateRegistrationForm(f)
+			{
+				if (f.username.value == "") {
+					alert("Please, fill the User field");
+					f.username.focus();
+					
+					return false;
+				}
 				
-				return false;
-			}
-			
-			if (f.email.value == "" || checkemail(f.email.value) != true) {
-		        alert("Please, fill the Email Address field");
-		        f.email.focus();
+				if (f.email.value == "" || checkemail(f.email.value) != true) {
+			        alert("Please, fill the Email Address field");
+			        f.email.focus();
 
-		        return false;
-		    }
-			
-			if (f.password.value == "") {
-				alert("Please, fill the Password field");
-				f.password.focus();
+			        return false;
+			    }
 				
-				return false;
-			}
-			
-			if (f.password_confirm.value == "") {
-				alert("Please, fill the Confirmation Password field");
-				f.password_confirm.focus();
+				if (f.password.value == "") {
+					alert("Please, fill the Password field");
+					f.password.focus();
+					
+					return false;
+				}
 				
-				return false;
+				if (f.password_confirm.value == "") {
+					alert("Please, fill the Confirmation Password field");
+					f.password_confirm.focus();
+					
+					return false;
+				}
+				
+				if (f.password.value != f.password_confirm.value) {
+					alert("The confirmation password doesn't match.");
+					return false;
+				}
+				
+				return true;
 			}
-			
-			if (f.password.value != f.password_confirm.value) {
-				alert("The confirmation password doesn't match.");
-				return false;
-			}
-			
-			return true;
-		}
 
-		function newCaptcha()
-		{	
-			document.getElementById("captcha_img").src = "/jforum/captcha/generate.page?timestamp="+new Date().getTime();
-		}
-		/* ]]> */
+			function newCaptcha()
+			{	
+				document.getElementById("captcha_img").src = "/jforum/captcha/generate.page?timestamp="+new Date().getTime();
+			}
+			/* ]]> */
 		</script>
 
 
@@ -342,6 +356,13 @@ Modifications by JForum Team
     </#if>
 
 
+<!--     <#if logged && (session.privateMessages > 0)>
+    <script>
+		checkSession();
+	</script>
+    </#if> -->
+
+
 <!-- 	<script type="text/javascript">
 		var myAlert = document.getElementById('myAlert')
 		myAlert.addEventListener('closed.bs.alert', function () {
@@ -352,6 +373,8 @@ Modifications by JForum Team
 
     </script>
  -->
+
+
 
 <!--    <#if logged && (session.privateMessages > 0)>
 
@@ -389,7 +412,8 @@ Modifications by JForum Team
    $('#mailalert').hide();
 })
 </script> -->
-<script>
+
+<!-- <script>
 var button = document.getElementById("mailalert"),
   count = 0;
 button.onclick = function() {
@@ -399,7 +423,7 @@ button.onclick = function() {
     document.getElementById("mailalert").disabled=true
 }
 
-</script>
+</script> -->
 
 <!--  	<script type="text/javascript">
 		var myAlert = document.getElementById('myAlert')
@@ -544,49 +568,10 @@ button.onclick = function() {
 				</#list>
 				<!-- END OF FORUM LISTING -->
 			</table>
-
-			<table cellspacing="0" cellpadding="2" width="100%" align="center">
-				<tr>
-					<td align="left"><span class="gensmall">&nbsp;</span></td>
-				</tr>
-			</table>
-
-			<table class="forumline table" cellspacing="1" cellpadding="3" width="100%">
-				<tr>
-					<td class="cathead" colspan="2"><span class="cattitle">${I18n.getMessage("ForumListing.whoIsOnline")}</span></td>
-				</tr>
-				<tr>
-					<td class="row1" valign="middle" align="center" rowspan="2"><img src="${contextPath}/templates/${templateName}/images/whosonline.gif" alt="[Who's Online]"/></td>
-					<td class="row1 gensmall" align="left" width="100%">
-						${I18n.getMessage("ForumListing.totalMessagesInfo", [ totalMessages ])}<br />
-						${I18n.getMessage("ForumListing.registeredUsers", [ totalRegisteredUsers ])}<br />
-						${I18n.getMessage("ForumListing.newestUser")} <a href="${JForumContext.encodeURL("/user/profile/${lastUser.id}")}">${lastUser.username}</a>
-					</td>
-				</tr>
-				<tr>
-					<td class="row1 gensmall" align="left">
-						${I18n.getMessage("ForumListing.numberOfUsersOnline", [ totalOnlineUsers, totalRegisteredOnlineUsers, totalAnonymousUsers ])}&nbsp;&nbsp;
-						<br />
-						${I18n.getMessage("ForumListing.mostUsersEverOnline", [ mostUsersEverOnline.getTotal(), mostUsersEverOnline.getDate()?string ])}
-						<#if showOnline >
-							<br />
-							${I18n.getMessage("ForumListing.connectedUsers")}:
-							<#list userSessions as us>
-								<a href="${JForumContext.encodeURL("/user/profile/${us.userId}")}">${us.username}</a>&nbsp;
-								<#if us.isAdmin()>
-									(${I18n.getMessage("Administrator")})&nbsp;
-								<#elseif us.isModerator()>
-									({I18n.getMessage("Moderator")})&nbsp;
-								</#if>
-							</#list>
-						</#if>
-					</td>
-				</tr>
-			</table>
-
 		</td>
 	</tr>
 </table>
+
 <script type="text/javascript">
 /* <![CDATA[ */
 function limitTitleSize()
@@ -606,16 +591,7 @@ $(document).ready(function() {
 });
 /* ]]> */
 </script>
-</td>
-</tr>
-	<tr>
-		<td align="center">
-			<span class="copyright">Powered by <a class="copyright" href="https://sourceforge.net/projects/jforum2/" target="_blank">JForum 2.7.0</a> &copy; 2020 JForum Team &bull; Maintained by <a class="copyright" href="https://www.andowson.com/" target="_blank">Andowson Chang</a> and <a class="copyright" href="https://www.ulfdittmer.com/" target="_blank">Ulf Dittmer</a></span>
-		</td>
-	</tr>
-</table>
 
-</div>
 <iframe src="/jforum/ping_session.jsp" height="0" width="0" frameborder="0" scrolling="no" title="session keeper"></iframe>
 </body>
 </html>
