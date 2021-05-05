@@ -2,7 +2,7 @@
 <#include "header.htm"/>
 
 
-<div class="container">
+<div class="container-md">
 
 <table width="70%" class="table" align="center">
 
@@ -99,6 +99,16 @@
 				</#list>
 				<!-- END OF FORUM LISTING -->
 			</table>
+
+	<tr>
+		<td align="center">
+			<span class="gen">
+				<!-- <a href="?nonMobile=false">${I18n.getMessage("ForumBase.mobileView")}</a> -->
+				<#if session?exists && session.isAdmin()>&bull; <a id="adminpanel" href='${JForumContext.encodeURL("/admBase/login")}'>${I18n.getMessage("ForumBase.admin")}</a></#if>
+			</span>
+		</td>
+	</tr>
+
 
 		</td>
 	</tr>

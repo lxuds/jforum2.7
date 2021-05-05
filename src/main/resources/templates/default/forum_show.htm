@@ -1,13 +1,9 @@
 <#include "header.htm"/>
 <#import "../macros/pagination.ftl" as pagination/>
 <#import "../macros/presentation.ftl" as presentation/>
-<script type="text/javascript" src="${jQueryURL}"></script>
-<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/pagination.js?${startupTime}"></script>
 
-<#if bannerPages?contains("forum")>
-	<#assign position = 0 />
-	<#include "banner.htm"/>
-</#if>
+<div class="container-md">
+	<div class="row">
 
 <#if logged>
 	<script type="text/javascript">
@@ -44,25 +40,42 @@
 	<script type="text/javascript" src="${JForumContext.encodeURL("/js/list/moderation")}"></script>
 </#if>
 
-<table cellspacing="0" cellpadding="10" width="100%" align="center">
+
+
+
+  <table class="table" cellspacing="0" cellpadding="10" width="100%" align="center">
 	<tr>
 		<td class="bodyline" valign="top">
 			<table cellspacing="2" cellpadding="2" width="100%" align="center">
 				<tr>
 					<td valign="bottom" align="left" colspan="2">
-						<a class="maintitle" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
-						<a class="maintitle" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a>
+						<span class="nav">
+							<a href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
+							<a href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a>
 
-						<#if rssEnabled>
-							<a href="${JForumContext.encodeURL("/rss/forumTopics/${forum.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" alt="RSS feed" title="RSS feed" /></a>
-							<br />
-						</#if>
+							<#if rssEnabled>
+								<a href="${JForumContext.encodeURL("/rss/forumTopics/${forum.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" alt="RSS feed" title="RSS feed" /></a>
+								<br />
+							</#if>
+					    </span>
 					</td>
 
+		            <td class="nav" nowrap="nowrap" valign="middle" align="left">
+				  				<#assign paginationData><@pagination.doPagination action, forum.id/></#assign>
+								${paginationData}
+		            </td>
+
+					<td valign="middle" align="right" width="50">
+		              <#if readonly>
+		              <span class="icon_reply_locked"><img src="${contextPath}/images/transp.gif" alt="" /></span>
+		              <#elseif !readonly && !replyOnly>
+							<a href="${JForumContext.encodeURL("/posts/insert/${forum.id}")}" rel="nofollow" class="icon_new_topic"><img src="${contextPath}/images/transp.gif" alt="" /></a>              
+		              </#if>
+					</td>
 					<td valign="middle" nowrap="nowrap" align="right" class="gensmall">
-						<#if logged>
+<!-- 						<#if logged>
 							<a href="${JForumContext.encodeURL("/forums/readAll/${forum.id}")}">${I18n.getMessage("ForumIndex.setAllTopicsAsRead")}</a>
-						</#if>
+						</#if> -->
 
 						<#if moderator>
 							<br />
@@ -80,20 +93,8 @@
 							</#if>
 						</#if>
 					</td>
-				</tr>
-			</table>
-
-			<table cellspacing="2" cellpadding="2" width="100%" align="center">
-				<tr>
-						<td valign="middle" align="left" width="50">
-              <#if readonly>
-              <span class="icon_reply_locked"><img src="${contextPath}/images/transp.gif" alt="" /></span>
-              <#elseif !readonly && !replyOnly>
-							<a href="${JForumContext.encodeURL("/posts/insert/${forum.id}")}" rel="nofollow" class="icon_new_topic"><img src="${contextPath}/images/transp.gif" alt="" /></a>              
-              </#if>
-						</td>
-
-            <td class="nav" valign="middle" align="left">
+<!-- in forum search bar  -->
+<!--             <td class="nav" valign="middle" align="left">
 				<form accept-charset="${encoding}" action="${JForumContext.encodeURL("/jforum")}" method="get" id="formSearch" name="formSearch" style="margin: 0px; padding: 0px;">
                 <input type="hidden" name="module" value="search"/>
                 <input type="hidden" name="action" value="search"/>
@@ -102,14 +103,14 @@
 				<input type="text" onblur="if (this.value == '') this.value = '${I18n.getMessage("ForumIndex.searchThisForum")}...';" onclick="if (this.value == '${I18n.getMessage("ForumIndex.searchThisForum")}...') this.value = '';" value="${I18n.getMessage("ForumIndex.searchThisForum")}..." size="20" name="search_keywords" class="inputSearchForum"/>
 				<input type="submit" value="${I18n.getMessage("ForumBase.search")}" class="liteoption" />
 				</form>
-            </td>
-            <td class="nav" nowrap="nowrap" align="right">
-		  				<#assign paginationData><@pagination.doPagination action, forum.id/></#assign>
-						${paginationData}
-            </td>
+            </td> -->
+            <!-- pigination bar -->
+
+
 				</tr>
 			</table>
 
+			<!-- new topic -->
 			<#if (canApproveMessages && topicsToApprove.size() > 0)>
 				<script type="text/javascript">
 				/* <![CDATA[ */
@@ -188,6 +189,7 @@
 				</table>
 				</form>
 			</#if>
+			<!-- ending of new topic -->
 
 			<#if moderator>
 				<form action="${JForumContext.encodeURL("/jforum")}" method="post" name="formModeration" id="formModeration" accept-charset="${encoding}" style="margin: 0px; padding: 0px;">
@@ -200,7 +202,7 @@
 				 <input type="hidden" name="OWASP_CSRFTOKEN" value="${OWASP_CSRFTOKEN!""}" />
 			</#if>
 
-			<table class="forumline" cellspacing="1" cellpadding="4" width="100%">
+			<table class="forumline topic_list" cellspacing="1" cellpadding="4" width="100%" >
 				<tr>
 					<th class="thcornerl" nowrap="nowrap" align="center" colspan="2">&nbsp;${I18n.getMessage("ForumIndex.topics")}&nbsp;</th>
 					<th class="thtop" nowrap="nowrap" align="center" width="50">&nbsp;${I18n.getMessage("ForumIndex.answers")}&nbsp;</th>
@@ -227,7 +229,7 @@
 						</#if>
 					</#if>
 
-					<tr class="bg_small_yellow">
+					<tr>
 						<td ${class1} valign="middle" align="center" width="20"><@presentation.folderImage topic/></td>
 						<td ${class1} width="100%">
 							<#if topic.hasAttach() && attachmentsEnabled><img src="${contextPath}/templates/${templateName}/images/icon_clip.gif" align="middle" alt="[Clip]" /></#if>
@@ -285,6 +287,8 @@
 				</#list>
 				<!-- END OF TOPICS LISTING -->
 
+				<#if moderator && openModeration?default(false)> 
+
 				<tr align="center">
 					<td class="catbottom" valign="middle" align="right" colspan="<#if moderator && openModeration?default(false)>7<#else>6</#if>">
 						<table cellspacing="0" cellpadding="0">
@@ -294,12 +298,19 @@
 						</table>
 					</td>
 				</tr>
+				</#if>
 			</table>
 
 			<#if moderator></form></#if>
 
 			<table cellspacing="2" cellpadding="2" width="100%" align="center">
 				<tr>
+
+					<td valign="middle" align="left" colspan="${colspan?default("0")}">
+						<span class="nav">
+						<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;  <a class="nav" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a></span>
+					</td>
+					<td nowrap="nowrap" align="left" class="nav">${paginationData}</td>
 					<#if !readonly && !replyOnly>
 						<td valign="middle" align="left" width="50">
 							<a href="${JForumContext.encodeURL("/posts/insert/${forum.id}")}" rel="nofollow" class="icon_new_topic"><img src="${contextPath}/images/transp.gif" alt="" /></a>
@@ -307,15 +318,12 @@
 					<#else>
 						<#assign colspan = "2"/>
 					</#if>
-					<td valign="middle" align="left" colspan="${colspan?default("0")}">
-						<span class="nav">
-						<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;  <a class="nav" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a></span>
-					</td>
-					<td nowrap="nowrap" align="right" class="nav">${paginationData}</td>
 				</tr>
 				<tr>
 					<td align="left" colspan="3"><span class="nav">&nbsp;</span></td>
 				</tr>
+
+
 			</table>
 
 			<table cellspacing="0" cellpadding="5" width="100%">
@@ -333,16 +341,12 @@
 							</#if>
 						</#if>
 					</td>
-					<td align="right"><@presentation.forumsComboTable/></td>
+					<td  class="gensmall" align="right"><@presentation.forumsComboTable/></td>
 				</tr>
 			</table>
 
-			<table cellspacing="0" cellpadding="0" width="100%" align="center">
+<!-- 			<table cellspacing="0" cellpadding="0" width="100%" align="center">
 				<tr>
-					<td valign="top" align="left">
-						<#include "folder_descriptions.htm"/>
-					</td>
-
 					<#assign moderators = forum.getModeratorList()/>
 					<#if (moderators.size() > 0)>
 						<td align="right" class="gensmall">
@@ -353,14 +357,15 @@
 						</td>
 					</#if>
 				</tr>
-			</table>
+			</table> -->
 
-			<#if bannerPages?contains("forum")>
+<!-- 			<#if bannerPages?contains("forum")>
 				<#assign position = 3 />
 				<#include "banner.htm"/>
-			</#if>
+			</#if> -->
 		</td>
 	</tr>
-</table>
-
+  </table>
+</div>
+</div>
 <#include "bottom.htm"/>
