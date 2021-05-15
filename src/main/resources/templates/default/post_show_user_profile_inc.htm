@@ -1,8 +1,8 @@
 <table cellspacing="0" cellpadding="0" width="100%">
 <tr>
 	<td valign="middle" nowrap="nowrap"> 
-		<a href="${JForumContext.encodeURL("/user/profile/${user.id}")}" class="icon_profile"><img src="${contextPath}/images/transp.gif" alt="" /></a>
-		<a href="${JForumContext.encodeURL("/pm/sendTo/${user.id}")}" class="icon_pm"><img src="${contextPath}/images/transp.gif" alt="" /></a>
+		<a href="${JForumContext.encodeURL("/user/profile/${user.id}")}" class="icon_profile"><i class="far fa-user fa-lg"></i></a>
+		<a href="${JForumContext.encodeURL("/pm/sendTo/${user.id}")}" class="icon_pm"><i class="far fa-envelope fa-lg"></i></a>
 		<#if (user.isViewEmailEnabled() && user.email?exists && user.email?length > 0)>
 			<#assign e = user.email.split("@")/>
 

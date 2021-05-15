@@ -2,9 +2,9 @@
 <#import "../macros/pagination.ftl" as pagination/>
 <#import "../macros/presentation.ftl" as presentation/>
 
+
 <div class="container-md">
 	<div class="row">
-
 <#if logged>
 	<script type="text/javascript">
 		var watchURL = "${JForumContext.encodeURL("/forums/watchForum/${forum.id}")}";
@@ -50,8 +50,9 @@
 				<tr>
 					<td valign="bottom" align="left" colspan="2">
 						<span class="nav">
-							<a href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
+							<a href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> <span id="raquo"> &raquo; </span>
 							<a href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a>
+							
 
 							<#if rssEnabled>
 								<a href="${JForumContext.encodeURL("/rss/forumTopics/${forum.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" alt="RSS feed" title="RSS feed" /></a>
