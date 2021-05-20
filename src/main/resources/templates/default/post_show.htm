@@ -81,7 +81,7 @@
 <!-- 			<table cellspacing="2" cellpadding="2" width="100%">
 				<tr>
 					<td valign="middle" align="left">
-						<span nn><a href="${JForumContext.encodeURL("/posts/list/${topic.id}")}" name="top" class="maintitle" id="top">${topic.title?html}</a></span>
+						<span><a href="${JForumContext.encodeURL("/posts/list/${topic.id}")}" name="top" class="maintitle" id="top">${topic.title?html}</a></span>
 						<#if rssEnabled>
 							<a href="${JForumContext.encodeURL("/rss/topicPosts/${topic.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" alt="RSS feed" title="RSS feed" /></a>
 						</#if>
