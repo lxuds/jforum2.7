@@ -74,6 +74,7 @@ INSERT INTO jforum_posts_text VALUES (1,'[b][color=blue][size=18]Congratulations
 --
 INSERT INTO jforum_roles (group_id, name) VALUES (1, 'perm_vote');
 INSERT INTO jforum_roles (group_id, name) VALUES (1, 'perm_karma_enabled');
+INSERT INTO jforum_roles (group_id, name) VALUES (1, 'perm_like_enabled');
 INSERT INTO jforum_roles (group_id, name) VALUES (1, 'perm_anonymous_post');
 INSERT INTO jforum_roles (group_id, name) VALUES (1, 'perm_create_poll');
 INSERT INTO jforum_roles (group_id, name) VALUES (1, 'perm_bookmarks_enabled');
@@ -93,6 +94,7 @@ INSERT INTO jforum_roles (group_id, name) VALUES (2, 'perm_create_sticky_announc
 INSERT INTO jforum_roles (group_id, name) VALUES (2, 'perm_vote');
 INSERT INTO jforum_roles (group_id, name) VALUES (2, 'perm_create_poll');
 INSERT INTO jforum_roles (group_id, name) VALUES (2, 'perm_karma_enabled');
+INSERT INTO jforum_roles (group_id, name) VALUES (2, 'perm_like_enabled');
 INSERT INTO jforum_roles (group_id, name) VALUES (2, 'perm_bookmarks_enabled');
 INSERT INTO jforum_roles (group_id, name) VALUES (2, 'perm_attachments_download');
 INSERT INTO jforum_roles (group_id, name) VALUES (2, 'perm_moderation_log'); -- novo

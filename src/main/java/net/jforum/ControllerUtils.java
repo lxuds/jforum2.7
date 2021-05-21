@@ -92,6 +92,7 @@ public class ControllerUtils
 		final RequestContext request = JForumExecutionContext.getRequest();
 		
 		context.put("karmaEnabled", SecurityRepository.canAccess(SecurityConstants.PERM_KARMA_ENABLED));
+		context.put("likeEnabled", SecurityRepository.canAccess(SecurityConstants.PERM_LIKE_ENABLED));
 		context.put("dateTimeFormat", SystemGlobals.getValue(ConfigKeys.DATE_TIME_FORMAT));
 		context.put("autoLoginEnabled", SystemGlobals.getBoolValue(ConfigKeys.AUTO_LOGIN_ENABLED));
 		context.put("sso", ConfigKeys.TYPE_SSO.equals(SystemGlobals.getValue(ConfigKeys.AUTHENTICATION_TYPE)));

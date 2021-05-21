@@ -74,4 +74,5 @@ public final class SecurityConstants
 	public static final String PERM_ATTACHMENTS_DOWNLOAD = "perm_attachments_download";
 	public static final String PERM_MODERATION_LOG = "perm_moderation_log";
 	public static final String PERM_FULL_MODERATION_LOG = "perm_full_moderation_log";
+	public static final String PERM_LIKE_ENABLED = "perm_like_enabled";
 }

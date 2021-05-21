@@ -92,6 +92,14 @@
 		</permission>
 	</section>
 
+	<!-- Like -->
+	<section id="like_disabled" title="Permissions.like">
+		<permission id="perm_like_enabled" title="Permissions.likeDescription" type="single">
+			<option value="deny" description="No"/>
+			<option value="allow" description="Yes"/>
+		</permission>
+	</section>
+
 	<!-- Bookmarks -->
 	<section id="bookmarks_disabled" title="Permissions.bookmarks">
 		<permission id="perm_bookmarks_enabled" title="Permissions.bookmarksDescription" type="single">
