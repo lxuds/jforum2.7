@@ -192,6 +192,12 @@ public abstract class DataAccessDriver
 	 */
 	public abstract ConfigDAO newConfigDAO();
 	/**
+	 * Gets a {@link net.jforum.dao.LikeDAO} instance
+	 * 
+	 * @return <code>link net.jforum.model.LikeModel</code> instance
+	 */
+	public abstract LikeDAO newLikeDAO();
+	/**
 	 * Gets a {@link net.jforum.dao.KarmaDAO} instance
 	 * 
 	 * @return <code>link net.jforum.model.KarmaModel</code> instance

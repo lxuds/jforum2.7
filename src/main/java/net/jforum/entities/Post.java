@@ -73,6 +73,7 @@ public class Post implements Serializable
 	protected String userIp;
 	protected boolean canEdit;
 	protected KarmaStatus karma;
+	protected LikeStatus like;
 	protected boolean hasAttachments;
 	protected boolean moderate;
 	protected int topicType;
@@ -113,6 +114,7 @@ public class Post implements Serializable
 		this.userId = post.getUserId();
 		this.userIp = post.getUserIp();
 		this.karma = (new KarmaStatus(post.getKarma()));
+		this.like = (new LikeStatus(post.getLike()));
 		this.moderate = post.isModerationNeeded();
 		this.hasAttachments = post.hasAttachments();
 		this.type = post.getType();
@@ -142,7 +144,16 @@ public class Post implements Serializable
 	{
 		this.karma = karma;
 	}
+
+	public LikeStatus getLike()
+	{
+		return this.like;
+	}
 	
+	public void setLike(LikeStatus like)
+	{
+		this.like = like;
+	}
 	/**
 	 * Checks if the BB code is enabled
 	 * 

@@ -108,6 +108,7 @@ public class User implements Serializable
 	private List<Group> groupsList;
 	private int privateMessagesCount;
 	private KarmaStatus karma;
+	private LikeStatus like;
 	private int active;
 	private String activationKey;
 	private int deleted;
@@ -743,6 +744,16 @@ public class User implements Serializable
 	public KarmaStatus getKarma()
 	{
 		return this.karma;
+	}
+
+	public void setLike(LikeStatus like)
+	{
+		this.like = like;
+	}
+	
+	public LikeStatus getLike()
+	{
+		return this.like;
 	}
 	
 	/**
