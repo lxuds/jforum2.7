@@ -364,6 +364,25 @@ CREATE INDEX idx_krm_user ON jforum_karma(post_user_id);
 CREATE INDEX idx_krm_from ON jforum_karma(from_user_id);
 
 --
+-- Table structure for table 'jforum_like'
+--
+CREATE SEQUENCE jforum_like_seq;
+CREATE TABLE jforum_like (
+  like_id INT NOT NULL DEFAULT nextval('jforum_like_seq'),
+  post_id INT NOT NULL,
+  topic_id INT NOT NULL,
+  post_user_id INT NOT NULL,
+  from_user_id INT NOT NULL,
+  points INT DEFAULT 0,
+  rate_date TIMESTAMP DEFAULT NULL,
+  PRIMARY KEY(like_id)
+);
+CREATE INDEX idx_lk_post ON jforum_like(post_id);
+CREATE INDEX idx_lk_topic ON jforum_like(topic_id);
+CREATE INDEX idx_lk_user ON jforum_like(post_user_id);
+CREATE INDEX idx_lk_from ON jforum_like(from_user_id);
+
+--
 -- Table structure for table 'jforum_bookmark'
 --
 CREATE SEQUENCE jforum_bookmarks_seq;
