@@ -78,35 +78,6 @@
 <table class="table" cellspacing="0" cellpadding="10" width="100%" align="center">
 	<tr>
 		<td class="bodyline">
-<!-- 			<table cellspacing="2" cellpadding="2" width="100%">
-				<tr>
-					<td valign="middle" align="left">
-						<span><a href="${JForumContext.encodeURL("/posts/list/${topic.id}")}" name="top" class="maintitle" id="top">${topic.title?html}</a></span>
-						<#if rssEnabled>
-							<a href="${JForumContext.encodeURL("/rss/topicPosts/${topic.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" alt="RSS feed" title="RSS feed" /></a>
-						</#if>
-					</td>
-					<#if socialEnabled>
-						<td valign="middle" align="right" width="30%">
-							<div class="shariff"
-								data-button-style="icon"
-								data-lang="${(language?default("en_US"))?keep_before("_")}"
-								data-mail-url="mailto:"
-								<#assign idx = 0/>
-								data-services="[
-								<#list socialSites?split(",") as site>
-									<#assign trimSite = site?trim/>
-									<#if (idx > 0)>,</#if>
-									&quot;${trimSite}&quot;
-									<#assign idx = idx+1/>
-								</#list>
-								]">
-							</div>
-						</td>
-					</#if>
-				</tr>
-			</table> -->
-
 			<table cellspacing="2" cellpadding="2" width="100%">
 				<tr>
 					<td valign="middle" align="left" colspan="${colspan?default("0")}">
@@ -116,9 +87,6 @@
             			<a class="nav" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a> 
               			<span id="raquo">&nbsp;  &raquo; &nbsp; </span>           			
             			<a class="nav"  href="${JForumContext.encodeURL("/posts/list/${topic.id}")}" name="top" id="top">${topic.title?html}</a>
-<!-- 						<#if rssEnabled>
-							<a href="${JForumContext.encodeURL("/rss/topicPosts/${topic.id}")}"><img src="${contextPath}/templates/${templateName}/images/xml_button.gif" alt="RSS feed" title="RSS feed" /></a>
-						</#if> -->
             		    </span>
 					</td>
 					<td valign="middle" align="left"><#assign paginationData><@pagination.doPagination "list", topic.id/></#assign>${paginationData}</td>
@@ -228,23 +196,25 @@
 								</#if>
                                 <p><i><span class="gensmall">${I18n.getMessage(editCountMessage, [post.editCount, post.formattedEditTime])}</span></i></p>
 							</#if>
+
+
 						</td>
 					</tr>
+
 
 					<#if useSignature>
 						<tr>
 							<td colspan="1" class="${rowColor}" width="100%"><hr/ color = rgb(229,237,232);><span class="gensmall">${user.signature}</span></td>
 						</tr>
 					</#if>
-		
-<!-- 					<#if topic.type != TOPIC_WIKI>
+	
+					<#if topic.type != TOPIC_WIKI>
 						<tr> 
 							<td class="${rowColor}" valign="bottom" nowrap="nowrap" width="100%">
 								<#include "post_show_user_profile_inc.htm"/>					
 							</td>
 						</tr>
-					</#if> -->
-		
+					</#if>
 			
 					<tr>
 	 					<!-- <td colspan="2" > <hr style="height:1px;border:none;color:rgb(229,237,232);background-color:rgb(229,237,232);" /> -->

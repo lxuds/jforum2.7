@@ -128,7 +128,7 @@ public interface LikeDAO
 	 * @return A <code>java.util.Map</code>, where the key is the post id and the
 	 * value id the rate made by the user.
 	 */
-	Map<Integer, Integer> getUserVotes(int topicId, int userId) ;
+	Map<Integer, Integer> getUserLikes(int topicId, int userId) ;
 	
 	/**
 	 * @param user User

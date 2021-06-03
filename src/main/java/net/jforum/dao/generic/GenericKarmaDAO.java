@@ -59,6 +59,7 @@ import net.jforum.entities.User;
 import net.jforum.exceptions.DatabaseException;
 import net.jforum.util.DbUtils;
 import net.jforum.util.preferences.SystemGlobals;
+import net.jforum.util.DumpStack;
 
 /**
  * @author Rafael Steil
@@ -174,6 +175,10 @@ public class GenericKarmaDAO implements net.jforum.dao.KarmaDAO
 	 */
 	@Override public void update(final Karma karma)
 	{
+		// LX trace functions that call Karma update 
+		DumpStack.dumpText("Karma update");
+		DumpStack.dumpStack();
+		
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("KarmaModel.update"));

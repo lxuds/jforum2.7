@@ -182,6 +182,7 @@ public class GenericPostDAO extends AutoKeys implements net.jforum.dao.PostDAO
 		post.setModerate(rs.getInt("need_moderate") == 1);
 
 		post.setKarma(DataAccessDriver.getInstance().newKarmaDAO().getPostKarma(post.getId()));
+		post.setLike(DataAccessDriver.getInstance().newLikeDAO().getPostLike(post.getId()));
 
 		return post;
 	}

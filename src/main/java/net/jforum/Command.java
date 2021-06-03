@@ -58,7 +58,7 @@ import net.jforum.repository.Tpl;
 import net.jforum.util.preferences.ConfigKeys;
 import net.jforum.util.preferences.SystemGlobals;
 import net.jforum.util.preferences.TemplateKeys;
-import net.jforum.util.DumpStack;
+import net.jforum.util.DumpStack; 
 
 /**
  * <code>Command</code> Pattern implementation.
@@ -121,6 +121,10 @@ public abstract class Command
 		
 		if (!this.ignoreAction) {
 			try {
+				// LX trace if LikeAction is called
+				DumpStack.dumpText("Template Process getMethod action:" + action);
+				DumpStack.dumpStack();
+
 				this.getClass().getMethod(action, NO_ARGS_CLASS).invoke(this, NO_ARGS_OBJECT);
 			}
 			catch (NoSuchMethodException e) {		

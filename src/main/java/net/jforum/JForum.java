@@ -261,6 +261,9 @@ public class JForum extends JForumBaseServlet
         final Command command = this.retrieveCommand(moduleClass);
         final Template template = command.process(request, response, context);
 
+        DumpStack.dumpText(">>>>>>> COMMAND module: " + request.getModule() + " action: " + request.getAction());
+        DumpStack.dumpText(">>>>>>> REDIRECT: " + JForumExecutionContext.getRedirectTo());
+        
         if (JForumExecutionContext.getRedirectTo() == null) {
             String contentType = JForumExecutionContext.getContentType();
 
@@ -269,6 +272,7 @@ public class JForum extends JForumBaseServlet
             }
             // LX
             DumpStack.dumpText(">>>>>>> request: " + request.getQueryString());
+            DumpStack.dumpText(">>>>>>> module: " + request.getModule() + " action: " + request.getAction());
                       
             response.setContentType(contentType);
 

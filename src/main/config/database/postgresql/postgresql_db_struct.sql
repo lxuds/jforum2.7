@@ -373,7 +373,7 @@ CREATE TABLE jforum_like (
   topic_id INT NOT NULL,
   post_user_id INT NOT NULL,
   from_user_id INT NOT NULL,
-  points INT DEFAULT 0,
+  points INT NOT NULL,
   rate_date TIMESTAMP DEFAULT NULL,
   PRIMARY KEY(like_id)
 );

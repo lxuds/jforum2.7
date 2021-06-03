@@ -174,6 +174,7 @@ public class GenericLikeDAO implements net.jforum.dao.LikeDAO
 	 */
 	@Override public void update(final Like like)
 	{
+		
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = JForumExecutionContext.getConnection().prepareStatement(SystemGlobals.getSql("LikeModel.update"));
@@ -269,9 +270,9 @@ public class GenericLikeDAO implements net.jforum.dao.LikeDAO
 	}
 
 	/**
-	 * @see net.jforum.dao.LikeDAO#getUserVotes(int, int)
+	 * @see net.jforum.dao.LikeDAO#getUserLikes(int, int)
 	 */
-	@Override public Map<Integer, Integer> getUserVotes(final int topicId, final int userId)
+	@Override public Map<Integer, Integer> getUserLikes(final int topicId, final int userId)
 	{
 		final Map<Integer, Integer> map = new ConcurrentHashMap<Integer, Integer>();
 
@@ -279,7 +280,7 @@ public class GenericLikeDAO implements net.jforum.dao.LikeDAO
 		ResultSet resultSet = null;
 		try {
 			pstmt = JForumExecutionContext.getConnection()
-					.prepareStatement(SystemGlobals.getSql("LikeModel.getUserVotes"));
+					.prepareStatement(SystemGlobals.getSql("LikeModel.getUserLikes"));
 			pstmt.setInt(1, topicId);
 			pstmt.setInt(2, userId);
 

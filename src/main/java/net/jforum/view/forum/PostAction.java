@@ -203,6 +203,12 @@ public class PostAction extends Command
 			userVotes = DataAccessDriver.getInstance().newKarmaDAO().getUserVotes(topic.getId(), us.getUserId());
 		}
 
+		Map<Integer, Integer> userLikes = new ConcurrentHashMap<Integer, Integer>();
+		if (logged) {
+			userLikes = DataAccessDriver.getInstance().newLikeDAO().getUserLikes(topic.getId(), us.getUserId());
+		}
+		
+		
         Category category = ForumRepository.getCategory(forum.getCategoryId());
 
 		this.setTemplateName(TemplateKeys.POSTS_LIST);
@@ -211,6 +217,7 @@ public class PostAction extends Command
 		this.context.put("thumbShowBox", SystemGlobals.getBoolValue(ConfigKeys.ATTACHMENTS_IMAGES_THUMB_BOX_SHOW));
 		this.context.put("am", new AttachmentCommon(this.request, topic.getForumId()));
 		this.context.put("karmaVotes", userVotes);
+		this.context.put("userLikesVotes", userLikes);
 		this.context.put("canRemove", pc.canAccess(SecurityConstants.PERM_MODERATION_POST_REMOVE));
 		this.context.put("moderatorCanEdit", moderatorCanEdit);
 		this.context.put("editAfterReply", SystemGlobals.getBoolValue(ConfigKeys.POSTS_EDIT_AFTER_REPLY));

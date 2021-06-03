@@ -650,6 +650,22 @@ KarmaModel.getMostRatedUserByPeriod = SELECT u.user_id, u.username, SUM(points) 
       AND k.rate_date BETWEEN ? AND ? \
       GROUP BY u.user_id, u.username, user_karma
 
+# ###########
+# LikeModel
+# ###########
+LikeModel.add = INSERT INTO jforum_like (post_id, post_user_id, from_user_id, points, topic_id, rate_date) VALUES (?, ?, ?, ?, ?, ?)
+LikeModel.update = UPDATE jforum_like SET points = ? WHERE like_id = ?
+-- KarmaModel.getUserKarma = SELECT user_karma FROM jforum_users WHERE user_id = ?
+-- KarmaModel.updateUserKarma = UPDATE jforum_users SET user_karma = ? WHERE user_id = ?
+LikeModel.getPostLike = SELECT SUM(points) AS points FROM jforum_like WHERE post_id = ?
+-- LikeModel.getPostLike = SELECT count(t1.*) -count(t2.*) FROM (select )
+-- KarmaModel.deletePostKarma = DELETE FROM jforum_karma WHERE post_id = ?
+-- LikeModel.userCanAddLike = SELECT COUNT(1) FROM jforum_like WHERE post_id = ? AND from_user_id = ?
+
+-- KarmaModel.getUserKarmaPoints = SELECT SUM(points) AS points, COUNT(1) AS votes, from_user_id \
+--     FROM jforum_karma WHERE post_user_id = ? GROUP BY from_user_id
+LikeModel.getUserLikes = SELECT points, post_id FROM jforum_like WHERE topic_id = ? AND from_user_id = ?    
+
 # ##############
 # BookmarkModel
 # ##############

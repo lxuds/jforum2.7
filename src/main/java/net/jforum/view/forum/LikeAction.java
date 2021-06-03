@@ -60,6 +60,9 @@ import net.jforum.util.preferences.SystemGlobals;
 import net.jforum.util.preferences.TemplateKeys;
 import net.jforum.view.forum.common.PostCommon;
 import net.jforum.view.forum.common.ViewCommon;
+import net.jforum.util.DumpStack;
+
+
 
 /**
  * @author Rafael Steil
@@ -69,11 +72,16 @@ public class LikeAction extends Command
 {
 	public void insert()
 	{
-		if (!SecurityRepository.canAccess(SecurityConstants.PERM_LIKE_ENABLED)) {
+		// LX trace functions that call function insert()
+		DumpStack.dumpText("LikeAction Insert");
+		DumpStack.dumpStack();
+		
+		/*if (!SecurityRepository.canAccess(SecurityConstants.PERM_LIKE_ENABLED)) {
 			this.error("Like.featureDisabled", null);
 			return;
-		}
+		}*/
 
+		
 		int postId = this.request.getIntParameter("post_id");
 		int fromUserId = SessionFacade.getUserSession().getUserId();
 
@@ -113,6 +121,7 @@ public class LikeAction extends Command
 		like.setPostUserId(post.getUserId());
 		like.setPostId(postId);
 		like.setTopicId(post.getTopicId());
+		
 		like.setPoints(points);
 
 		lm.addLike(like);
