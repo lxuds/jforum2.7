@@ -20,7 +20,7 @@
 					<script type="text/javascript">writeStars(${post.karma.karmaPoints}, ${post.id});</script>
 				</#if> -->
 				<#if topic.status != STATUS_LOCKED && !readonly && topic.type != TOPIC_WIKI && logged>
-					<a href="#" class="btn btn-counter far" data-count=${post.like.likePoints} id="heart"><span><i class="fa-heart"></i></span></a>
+					<a href="#" class="btn btn-counter far" data-count="0" id="heart"><span><i class="fa-heart"></i></span></a>
 
 				    <a href="${JForumContext.encodeURL("/posts/quote/${start}/${post.id}")}" rel="nofollow" class="icon_quote">
 						<i class="fas fa-reply fa-lg"></i> </a>
@@ -40,28 +40,27 @@
 			<script> 
 
 				$('#heart.btn-counter').on('click', function(event, count) {
-				  // alert("1 count = " + count);
+				  //alert("1 count = " + count);
 				  event.preventDefault();				  
 				  var $this = $(this),
 				      count = $this.attr('data-count'),
-				      alert("count = " + count);
-
 				      active = $this.hasClass('active'),
 				      clickPoints = 1;
+
 				      $this.attr('data-count', 
                                  active ? --count : ++count).toggleClass('active fas');
-					 // alert("2 count = " + count);
+					  //alert("2 count = " + count);
 
 				      if (active) {
                          clickPoints = 0;
-                         alert("3 clickPoints = " + clickPoints);
+                        // alert("3 clickPoints = " + clickPoints);
 				      } else {
                          clickPoints = 1;
-                         alert("4 clickPoints = " + clickPoints);
+                         //alert("4 clickPoints = " + clickPoints);
 				      }
-				      alert("${contextPath}/like/insert/${start}/${post.id}/" + clickPoints + "${extension}");
-				      document.location.replace("${contextPath}/like/insert/${start}/${post.id}/" + clickPoints + "${extension}");
-				  alert("5 count = " + count);
+				     // alert("${contextPath}/like/insert/${start}/${post.id}/" + clickPoints + "${extension}");
+				      //document.location.replace("${contextPath}/like/insert/${start}/${post.id}/" + clickPoints + "${extension}");
+				  //alert("5 count = " + count);
 				});
 			</script>
 						</div>
