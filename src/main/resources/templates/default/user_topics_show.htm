@@ -3,6 +3,9 @@
 <#import "../macros/presentation.ftl" as presentation/>
 <script type="text/javascript" src="${contextPath}/templates/${templateName}/js/pagination.js?${startupTime}"></script>
 
+<div class="container-md">
+
+
 <table cellspacing="0" cellpadding="10" width="100%" align="center">
 	<tr>
 		<td class="bodyline" valign="top">
@@ -10,13 +13,20 @@
 			<table cellspacing="0" cellpadding="2" width="100%" align="center">
 				<tr>
 					<td valign="bottom" align="left">
+						<!-- <span class="nav"> -->
+
 						<#assign breadCrumb>
-							<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
+						<span class="nav">
+							<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> 
+							<span id="raquo">&nbsp;  &raquo; &nbsp; </span>
 							<a class="nav" href="${JForumContext.encodeURL("/user/profile/${u.id}")}">${I18n.getMessage("UserProfile.profileFor")} ${u.username}</a> 
-							&raquo;
+							<span id="raquo">&nbsp;  &raquo; &nbsp; </span>
 							<a class="nav" href="${JForumContext.encodeURL("/recentTopics/showTopicsByUser/${u.id}")}">${I18n.getMessage("ForumListing.userTopics")} ${u.username?html}</a>
+							</span>
 						</#assign>
 						${breadCrumb}
+
+					<!-- </span> -->
 					</td>
 					<td align="right">
 						<#assign paginationData>
@@ -100,4 +110,5 @@
 		</td>
 	</tr>
 </table>
+</div>
 <#include "bottom.htm"/>
