@@ -17,32 +17,36 @@
 		$('#'+item).toggle();
 	}
 </script>
+<div class="container-md">
 
 <table cellspacing="0" cellpadding="10" width="100%" align="center">
 	<tr>
 		<td class="bodyline">
-			<table cellspacing="2" cellpadding="2" width="100%">
+<!-- 			<table cellspacing="2" cellpadding="2" width="100%">
 				<tr>
 					<td valign="middle" align="left" colspan="2">
 						<span class="maintitle"><a href="${JForumContext.encodeURL("/posts/listByUser/${u.id}")}" name="top" class="maintitle" id="top">${I18n.getMessage("PostShow.userPosts")}: ${u.username?html}</a></span>
 					</td>
 				</tr>
-			</table>
+			</table> -->
 			
 			<table cellspacing="2" cellpadding="2" width="100%">
 				<tr>
 					
 					<td valign="middle" align="left" colspan="${colspan?default("0")}">
 						<#assign breadCrumb>
-							<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> &raquo;
+						<span class="nav">
+							<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a> 
+							<span id="raquo">&nbsp;  &raquo; &nbsp; </span>
 							<a class="nav" href="${JForumContext.encodeURL("/user/profile/${u.id}")}">${I18n.getMessage("UserProfile.profileFor")} ${u.username}</a> 
-							&raquo;
+							<span id="raquo">&nbsp;  &raquo; &nbsp; </span>
             				<a class="nav" href="${JForumContext.encodeURL("/posts/listByUser/${u.id}")}">${I18n.getMessage("PostShow.userPosts")} ${u.username}</a>
+            			</span>
 						</#assign>
 						${breadCrumb}
 					</td>
 										
-					<td valign="middle" align="right">
+					<td valign="middle" align="left">
 						<#assign paginationData>	
 							<@pagination.doPagination "listByUser", u.id/>
 						</#assign>
@@ -100,7 +104,7 @@
 				</#list>
 				<!-- END OF POST LISTING -->
 			
-				<tr align="center">
+<!-- 				<tr align="center">
 					<td class="catbottom" colspan="2">
 						<table cellspacing="0" cellpadding="0">
 							<tr>
@@ -108,7 +112,7 @@
 							</tr>
 						</table>
 					</td>
-				</tr>
+				</tr> -->
 			</table>
 		
 			<table cellspacing="2" cellpadding="2" width="100%" align="center">
@@ -118,7 +122,7 @@
 						${breadCrumb}
 					</td>
 
-					<td valign="middle" align="right">${paginationData}</td>
+					<td valign="middle" align="left">${paginationData}</td>
 				</tr>
 				
 				<tr>
@@ -134,4 +138,5 @@
 		</td>
 	</tr>
 </table>
+</div>
 <#include "bottom.htm"/>
