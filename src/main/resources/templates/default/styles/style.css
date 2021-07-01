@@ -32,7 +32,7 @@ td.row0 { background-color: rgb(229,237,233); }
 td.row2 { background-color: rgb(247,247,248,0.2); }   /*#f7f7f8*/
 td.row3, td.row3right{ background-color: rgba(223,223,223,0.2); }  /*#dfdfdf*/
 td.row4 {background-color: rgb(238,241,239);}
-td.spacerow     { height: 2px; background-color: rgb(110,148,142); border:none; padding:0;}
+td.spacerow     { height: 1px; background-color: rgb(110,148,142); border:none; padding:0;}
 /*td.row1announce { background-color: #fff8dd; }
 td.row1sticky   { background-color: #efefef; }
 td.row2announce { background-color: #f5ecd4; }
