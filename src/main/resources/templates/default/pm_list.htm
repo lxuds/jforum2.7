@@ -90,7 +90,7 @@
 							</tr>
 						</tbody>
 					</table>
-					<table class="forumline" cellspacing="1" cellpadding="3" width="100%">
+					<table class="forumline topic_list" cellspacing="1" cellpadding="3" width="100%">
 						<tbody>
 							<tr>
 								<th class="thcornerl" nowrap="nowrap" width="5%">
@@ -135,6 +135,10 @@
 							</tr>
 							</#list>
 							<tr>
+			 					<td class="spacerow" colspan="5"></td>			
+	                    	</tr>
+
+							<tr>
 								<td class="catbottom" align="right" colspan="5">
 									<b><span class="gensmall"><a class="gensmall" href="javascript:select_switch(true);">${I18n.getMessage("PrivateMessage.checkAll")}</a> :: 
 									<a class="gensmall" href="javascript:select_switch(false);">${I18n.getMessage("PrivateMessage.uncheckAll")}</a></span></b>
@@ -142,7 +146,8 @@
 									<!--
 									&nbsp; <input class="liteoption" type="submit" value="${I18n.getMessage("PrivateMessage.deleteAll")}" name="deleteall" />
 									-->
-								</td></tr>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 					<table cellspacing="2" cellpadding="2" width="100%" align="center">
