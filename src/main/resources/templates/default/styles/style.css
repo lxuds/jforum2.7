@@ -46,6 +46,10 @@ td.rowpic       { background-color: #ffffff; background-image: url(../images/cel
 background-color: #e5ede8;
 }
 
+.message_list tr:nth-child(odd){
+background-color: #e5ede8;
+}
+
 
 th, td { border: #ffffff 1px none; }
 /*Forum Topics Messages Last message color*/
