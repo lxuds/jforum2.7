@@ -1,4 +1,7 @@
 <#include "header.htm"/>
+
+<div class="container-md">
+
 <#assign preview = preview?default(false)/>
 <#assign logModeration = moderationLoggingEnabled && isEdit?default(false) && isModerator && user.id != post.userId/>
 <#assign allowPoll = setType?default(true) && canCreatePolls?default(false)/>
@@ -187,19 +190,6 @@ function cancelOperation()
 			</table>
 			<br clear="all" />
 
-			<table cellspacing="2" cellpadding="2" width="100%" align="center">
-				<tr>
-					<td align="left">
-						<span class="nav">
-							<a class="nav" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a>
-
-							<#if forum?exists>
-							&raquo; <a class="nav" href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">${forum.name?html}</a>
-							</#if>
-						</span>
-					</td>
-				</tr>
-			</table>
 
 			<table class="forumline" cellspacing="1" cellpadding="3" width="100%">
 				<tr>
@@ -547,6 +537,8 @@ function cancelOperation()
 <#if preview>document.location = "#preview";</#if>
 /* ]]> */
 </script>
+
+</div>
 
 <#include "highlighter_js.htm"/>
 <#include "bottom.htm"/>
