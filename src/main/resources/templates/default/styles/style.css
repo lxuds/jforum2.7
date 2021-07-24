@@ -74,6 +74,7 @@ th.thsides { height: 12px; }
 .boardtitle { font-size: 22px; }
 
 .gen, .poll { font-size: 12px }
+.gen {color:#1a5952;}
 .genmed, .name { font-size: 11px; color:#1a5952;}
 .gensmall, .postdetails { font-size: 10px; color:#1a5952;}
 .strong { font-weight: bold; }
