@@ -426,6 +426,47 @@ function cancelOperation()
 					</td>
 				</tr>
 
+				<!-- Options -->
+				<tr>
+					<td class="row1">&nbsp;</td>
+					<td class="row2">
+						<div id="tabs10">
+							<ul>
+								<#if false>
+								<li title="postOptions" class="current"><a href="#" onclick="activateTab('postOptions', this); return false;"><span>${I18n.getMessage("PostForm.options")}</span></a></li>
+								</#if>
+
+								<#if allowPoll>
+									<li title="postPoll"><a href="#" onclick="activateTab('postPoll', this); return false;"><span>${I18n.getMessage("PostForm.poll")}</span></a></li>
+								</#if>
+								<#if attachmentsEnabled>
+									<li title="postAttachments"><a href="#" onclick="activateTab('postAttachments', this); return false;"><span>${I18n.getMessage("PostForm.attachments")}</span></a></li>
+								</#if>
+							</ul>
+						</div>
+
+						<!-- Post Options -->
+					    <#if false>
+						<div id="postOptions" class="postTabContents">
+							<#include "post_options_tab.htm"/>
+						</div>
+						</#if>
+
+						<!-- Poll tab -->
+						<#if allowPoll>
+							<div id="postPoll" class="postTabContents" style="display: none;">
+								<#include "post_poll_tab.htm"/>
+							</div>
+						</#if>
+
+						<!-- Attachments tab -->
+						<#if attachmentsEnabled || attachments?exists>
+							<div id="postAttachments" class="postTabContents" style="display: none;">
+								<#include "post_attachments_tab.htm"/>
+							</div>
+						</#if>
+					</td>
+				</tr>
 
 				<#if needCaptcha?default(false)>
 					<tr>
@@ -464,6 +505,7 @@ function cancelOperation()
 			</table>
 		</td>
 	</tr>
+
 
 </table>
 </form>
