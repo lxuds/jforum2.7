@@ -281,9 +281,9 @@ function previewMessage()
 	var p = { 
 		text:f.message.value, 
 		subject:f.subject.value, 
-		html: true, 
-		bbcode:false, 
-		smilies:true,
+		html: false, 
+		bbcode: true, 
+		smilies: true,
 	};
 
 	$.ajax({
