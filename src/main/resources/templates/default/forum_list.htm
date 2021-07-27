@@ -8,20 +8,6 @@
 
 	<tr>
 		<td>
-			<table cellspacing="0" cellpadding="2" width="100%" align="center">
-				<tr>
-					<td valign="bottom" align="left">
-                        <#if logged><span class="gensmall">${I18n.getMessage("ForumListing.lastVisit")}: ${lastVisit}</span><br /></#if>
-                        <span class="gensmall">${I18n.getMessage("ForumListing.date")}: ${now}</span><br />
-						<span class="forumlink"><a class="forumlink" href="${JForumContext.encodeURL("/forums/list")}">${I18n.getMessage("ForumListing.forumIndex")}</a></span>
-					</td>
-					<td class="gensmall" valign="bottom" align="right">&nbsp;
-					<#if logged>
-						<a class="gensmall" href="${JForumContext.encodeURL("/forums/newMessages")}">${I18n.getMessage("ForumListing.readLastVisitMessages")}</a>
-					</#if>
-					</td>
-				</tr>
-			</table>
 
 			<table class="forumline forumlist" cellspacing="1" cellpadding="2" width="100%">
 				<tr>
